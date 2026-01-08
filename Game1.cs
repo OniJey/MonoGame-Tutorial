@@ -3,12 +3,15 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
+using MonoGameTutorial.Graphics;
 
-namespace MonoGame_Tutorial;
+namespace MonoGameTutorial;
 
 public class Game1 : Core
 {
-    private Texture2D _logo;
+    private TextureRegion _bat;
+
+    private TextureRegion _slime;
     public Game1() : base("Dungeon Slime", 1280, 720, false)
     {
         
@@ -25,7 +28,17 @@ public class Game1 : Core
     {
         base.LoadContent();
 
-        _logo = Content.Load<Texture2D>("images/logo");
+        Texture2D atlasTexture = Content.Load<Texture2D>("images/atlas");
+
+        TextureAtlas atlas = new TextureAtlas(atlasTexture);
+
+        atlas.AddRegion("slime", 0, 0, 20, 20);
+        
+        atlas.AddRegion("bat", 20, 0, 20, 20);
+
+        _slime = atlas.GetRegion("slime");
+
+        _bat = atlas.GetRegion("bat");
     }
 
     protected override void Update(GameTime gameTime)
@@ -42,18 +55,27 @@ public class Game1 : Core
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        draw(
-            () => {
-                SpriteBatch.Draw(_logo, Vector2.Zero, Color.White);
-            }
-        );
+        _slime.Draw(SpriteBatch, Vector2.Zero, Color.White);
+
+        _bat.Draw(SpriteBatch, new Vector2(20, 0), Color.White);
+
         base.Draw(gameTime);
     }
 
-    private void draw(Action func)
+    private static Vector2 getCenterVector(int width, int height)
     {
-        SpriteBatch.Begin();
+        return new Vector2(width * 0.5f, height * 0.5f);
+    }
+
+    private static Vector2 getCenterVector(Rectangle rect)
+    {
+        return new Vector2(rect.Width * 0.5f, rect.Height * 0.5f);
+    }
+
+    private static void drawSpriteBatch(SpriteBatch batch, Action func)
+    {
+        batch.Begin();
         func();
-        SpriteBatch.End();
+        batch.End();
     }
 }

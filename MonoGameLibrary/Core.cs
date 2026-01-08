@@ -27,7 +27,7 @@ public class Core : Game
     /// <summary>
     /// Gets graphics device used to perform primative rendering tasks
     /// </summary>
-    public GraphicsDevice _GraphicsDevice {get; private set;}
+    public GraphicsDevice GraphicsDevice {get; private set;}
     
 
     /// <summary>
@@ -84,7 +84,7 @@ public class Core : Game
     {
         base.Initialize();
 
-        _GraphicsDevice = base.GraphicsDevice;
-        SpriteBatch = new SpriteBatch(_GraphicsDevice);
+        GraphicsDevice = base.GraphicsDevice;
+        SpriteBatch = new SpriteBatch(GraphicsDevice);
     }
 }
