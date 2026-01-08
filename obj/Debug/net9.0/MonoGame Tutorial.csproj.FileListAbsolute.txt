@@ -1,12 +1,4 @@
-C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\mgcb.tool.restore
-C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame Tutorial.csproj.AssemblyReference.cache
-C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame Tutorial.GeneratedMSBuildEditorConfig.editorconfig
-C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame Tutorial.AssemblyInfoInputs.cache
-C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame Tutorial.AssemblyInfo.cs
-C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame Tutorial.csproj.CoreCompileInputs.cache
-C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame Tutorial.dll
-C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\refint\MonoGame Tutorial.dll
-C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame Tutorial.pdb
+C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\images\logo.xnb
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\MonoGame Tutorial.exe
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\MonoGame Tutorial.deps.json
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\MonoGame Tutorial.runtimeconfig.json
@@ -28,6 +20,14 @@ C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\runtimes\win-x64\native\openal.dll
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\runtimes\osx\native\libSDL2-2.0.0.dylib
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\runtimes\win-x64\native\SDL2.dll
+C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\mgcb.tool.restore
+C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame Tutorial.csproj.AssemblyReference.cache
+C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame Tutorial.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame Tutorial.csproj.CoreCompileInputs.cache
+C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame Tutorial.sourcelink.json
 C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame.5E792DFE.Up2Date
+C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame Tutorial.dll
+C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\refint\MonoGame Tutorial.dll
+C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame Tutorial.pdb
 C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame Tutorial.genruntimeconfig.cache
 C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\ref\MonoGame Tutorial.dll

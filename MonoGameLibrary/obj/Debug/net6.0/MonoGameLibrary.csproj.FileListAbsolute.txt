@@ -1,0 +1,13 @@
+C:\Dev\C#\MonoGame Tutorial\MonoGameLibrary\bin\Debug\net6.0\MonoGameLibrary.deps.json
+C:\Dev\C#\MonoGame Tutorial\MonoGameLibrary\bin\Debug\net6.0\MonoGameLibrary.dll
+C:\Dev\C#\MonoGame Tutorial\MonoGameLibrary\bin\Debug\net6.0\MonoGameLibrary.pdb
+C:\Dev\C#\MonoGame Tutorial\MonoGameLibrary\obj\Debug\net6.0\MonoGameLibrary.csproj.AssemblyReference.cache
+C:\Dev\C#\MonoGame Tutorial\MonoGameLibrary\obj\Debug\net6.0\MonoGameLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev\C#\MonoGame Tutorial\MonoGameLibrary\obj\Debug\net6.0\MonoGameLibrary.AssemblyInfoInputs.cache
+C:\Dev\C#\MonoGame Tutorial\MonoGameLibrary\obj\Debug\net6.0\MonoGameLibrary.AssemblyInfo.cs
+C:\Dev\C#\MonoGame Tutorial\MonoGameLibrary\obj\Debug\net6.0\MonoGameLibrary.csproj.CoreCompileInputs.cache
+C:\Dev\C#\MonoGame Tutorial\MonoGameLibrary\obj\Debug\net6.0\MonoGameLibrary.sourcelink.json
+C:\Dev\C#\MonoGame Tutorial\MonoGameLibrary\obj\Debug\net6.0\MonoGameLibrary.dll
+C:\Dev\C#\MonoGame Tutorial\MonoGameLibrary\obj\Debug\net6.0\refint\MonoGameLibrary.dll
+C:\Dev\C#\MonoGame Tutorial\MonoGameLibrary\obj\Debug\net6.0\MonoGameLibrary.pdb
+C:\Dev\C#\MonoGame Tutorial\MonoGameLibrary\obj\Debug\net6.0\ref\MonoGameLibrary.dll
