@@ -74,6 +74,7 @@ class TextureAtlas
     {
         TextureAtlas atlas = new TextureAtlas();
 
+
         string filePath = Path.Combine(content.RootDirectory, filename);
 
         using (Stream stream = TitleContainer.OpenStream(filePath))
@@ -85,6 +86,7 @@ class TextureAtlas
 
         //The <Texture> Element must contain the Content path for the Texture2D to load
         string texturePath = root.Element("Texture").Value;
+        atlas.Texture = content.Load<Texture2D>(texturePath);
 
         // The <Regions> element contains individual <Region> elements, each one describing
         // a different texture region within the atlas.  
@@ -98,7 +100,7 @@ class TextureAtlas
         // So we retrieve all of the <Region> elements then loop through each one
         // and generate a new TextureRegion instance from it and add it to this atlas.
 
-        var regions = root.Element("Regions")?.Elements("region");
+        var regions = root.Element("Regions")?.Elements("Region");
 
         if(regions != null)
         {

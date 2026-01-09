@@ -28,14 +28,8 @@ public class Game1 : Core
     {
         base.LoadContent();
 
-        Texture2D atlasTexture = Content.Load<Texture2D>("images/atlas");
-
-        TextureAtlas atlas = new TextureAtlas(atlasTexture);
-
-        atlas.AddRegion("slime", 0, 0, 20, 20);
+        TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas.xml");
         
-        atlas.AddRegion("bat", 20, 0, 20, 20);
-
         _slime = atlas.GetRegion("slime");
 
         _bat = atlas.GetRegion("bat");

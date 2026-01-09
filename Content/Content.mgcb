@@ -1,4 +1,3 @@
-
 #----------------------------- Global Properties ----------------------------#
 
 /outputDir:bin/$(Platform)
@@ -24,6 +23,9 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:images/atlas.png
+
+#begin images/atlas.xml
+/copy:images/atlas.xml
 
 #begin images/logo.png
 /importer:TextureImporter
