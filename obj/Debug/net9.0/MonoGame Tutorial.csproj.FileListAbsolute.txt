@@ -31,3 +31,4 @@ C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\refint\MonoGame Tutorial.dll
 C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame Tutorial.pdb
 C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame Tutorial.genruntimeconfig.cache
 C:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\ref\MonoGame Tutorial.dll
+C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\images\atlas.xnb

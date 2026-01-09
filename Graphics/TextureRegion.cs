@@ -18,17 +18,17 @@ class TextureRegion
     /// <summary>
     /// The region of the texture that is represented. (pixels as units)
     /// </summary>
-    public Rectangle SourceRectange {get; set;}
+    public Rectangle SourceRectangle {get; set;}
 
     /// <summary>
     /// Width (pixels) of the region
     /// </summary>
-    public int Width => SourceRectange.Width;
+    public int Width => SourceRectangle.Width;
 
     /// <summary>
     /// Height (pixels) of the region
     /// </summary>
-    public int Height => SourceRectange.Height;
+    public int Height => SourceRectangle.Height;
 
 
     public TextureRegion() {}
@@ -36,20 +36,20 @@ class TextureRegion
     public TextureRegion(Texture2D texture, int x, int y, int width, int height)
     {
         this.Texture = texture;
-        this.SourceRectange = new Rectangle(x, y, width, height);
+        this.SourceRectangle = new Rectangle(x, y, width, height);
     }
 
     public TextureRegion(Texture2D texture, Vector2 origin, Vector2 bounds)
     {
         this.Texture = texture;
-        this.SourceRectange = new Rectangle((int) origin.X, (int) origin.Y,(int) bounds.X,(int) bounds.Y);
+        this.SourceRectangle = new Rectangle((int) origin.X, (int) origin.Y,(int) bounds.X,(int) bounds.Y);
         
     }
 
     public TextureRegion(Texture2D texture, Rectangle rect)
     {
         this.Texture = texture;
-        this.SourceRectange = rect;
+        this.SourceRectangle = rect;
     }
 
     
@@ -65,7 +65,13 @@ class TextureRegion
         batch.Draw(
             Texture,
             pos,
-            color
+            SourceRectangle,
+            color,
+            0f,
+            Vector2.Zero,
+            Vector2.One,
+            SpriteEffects.None,
+            1.0f
         );
     }
 
@@ -86,7 +92,7 @@ class TextureRegion
         batch.Draw(
             Texture,
             pos,
-            SourceRectange,
+            SourceRectangle,
             color,
             rotation,
             origin,
@@ -113,7 +119,7 @@ class TextureRegion
         batch.Draw(
             Texture,
             pos,
-            SourceRectange,
+            SourceRectangle,
             color,
             rotation,
             origin,

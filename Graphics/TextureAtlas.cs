@@ -29,23 +29,47 @@ class TextureAtlas
         _regions = new Dictionary<string, TextureRegion>();
     }
 
+    /// <summary>
+    /// adds a region to the texture atlas
+    /// </summary>
+    /// <param name="name">the name of the new region</param>
+    /// <param name="rect">the bounds of the region</param>
     public void AddRegion(string name, Rectangle rect)
     {
         TextureRegion region = new TextureRegion(this.Texture, rect);
         _regions.Add(name, region);
     }
 
+    /// <summary>
+    /// adds a region to the texture atlas
+    /// </summary>
+    /// <param name="name">The name of the new region</param>
+    /// <param name="x">The x coordinate of the top right corner of the region</param>
+    /// <param name="y">The y coordinate of the top right corner of the region</param>
+    /// <param name="width">The width of the region</param>
+    /// <param name="height">The height of the region</param>
     public void AddRegion (string name, int x, int y, int width, int height)
     {
         TextureRegion region = new TextureRegion(this.Texture, x, y, width, height);
         _regions.Add(name, region);
     }
 
+    /// <summary>
+    /// returns a region given it's name
+    /// </summary>
+    /// <param name="name">the name of the region</param>
+    /// <returns></returns>
     public TextureRegion GetRegion(string name)
     {
         return _regions[name];
     }
 
+    /// <summary>
+    /// Parses an XML file to create a new TextureAtlas instance
+    /// </summary>
+    /// <param name="content">The content manager that loads the atlas texture</param>
+    /// <param name="filename">The file that contains the data for the regions contained in the atlas</param>
+    /// <returns>A TextureAtlas complete with regions from the xml file definition</returns>
     public static TextureAtlas FromFile(ContentManager content, string filename)
     {
         TextureAtlas atlas = new TextureAtlas();

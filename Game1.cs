@@ -55,9 +55,12 @@ public class Game1 : Core
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        _slime.Draw(SpriteBatch, Vector2.Zero, Color.White);
-
-        _bat.Draw(SpriteBatch, new Vector2(20, 0), Color.White);
+        drawSpriteBatch(SpriteBatch, () =>
+            {
+                _slime.Draw(SpriteBatch, Vector2.Zero, Color.White, 0, Vector2.Zero, 4.0f, SpriteEffects.None, 1.0f);
+                _bat.Draw(SpriteBatch, new Vector2(_slime.Width * 4.0f + 10, 0), Color.White, 0, Vector2.Zero, 4.0f, SpriteEffects.None, 1.0f);
+            }
+        );
 
         base.Draw(gameTime);
     }
