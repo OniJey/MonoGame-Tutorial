@@ -9,10 +9,10 @@ namespace MonoGameTutorial;
 
 public class Game1 : Core
 {
-    private Sprite _bat;
+    private AnimatedSprite _bat;
 
-    private Sprite _slime;
-    public Game1() : base("Dungeon Slime", 1280, 720, false)
+    private AnimatedSprite _slime;
+    public Game1() : base("Dungeon Slime", 800, 450, false)
     {
         
     }
@@ -30,10 +30,10 @@ public class Game1 : Core
 
         TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas.xml");
         
-        _slime  = new Sprite(atlas.GetRegion("slime")); 
+        _slime  = atlas.CreateAnimatedSprite("slime-animation");
         _slime.Scale = Vector2.One * 4;
 
-        _bat = new Sprite(atlas.GetRegion("bat"));
+        _bat = atlas.CreateAnimatedSprite("bat-animation");
         _bat.Scale = Vector2.One * 4;
     }
 
@@ -42,7 +42,10 @@ public class Game1 : Core
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // TODO: Add your update logic here
+        
+        _bat.Update(gameTime);
+
+        _slime.Update(gameTime);
 
         base.Update(gameTime);
     }

@@ -7,7 +7,7 @@ namespace MonoGameLibrary.Graphics;
 /// <summary>
 /// represents rectangular region in texture
 /// </summary>
-class TextureRegion
+public class TextureRegion
 {
     /// <summary>
     /// The texture that The region is binded to
@@ -30,26 +30,47 @@ class TextureRegion
     /// </summary>
     public int Height => SourceRectangle.Height;
 
-
+    /// <summary>
+    /// Creates an empty TextureRegion instance
+    /// </summary>
     public TextureRegion() {}
 
+    /// <summary>
+    /// Creates a Texture region in the specified texture in the specified position with the specified bounds
+    /// </summary>
+    /// <param name="texture">The base texture</param>
+    /// <param name="x">The x posision of the base texture the top left corner of the region will be</param>
+    /// <param name="y"> The y position of the base texture where the top left corner of the region will be</param>
+    /// <param name="width">The width of the region (in pixels)</param>
+    /// <param name="height">the height of the region (in pixels)</param>
     public TextureRegion(Texture2D texture, int x, int y, int width, int height)
     {
-        this.Texture = texture;
-        this.SourceRectangle = new Rectangle(x, y, width, height);
+        Texture = texture;
+        SourceRectangle = new Rectangle(x, y, width, height);
     }
 
+    /// <summary>
+    /// Creates a Texture region in the specified texture in the specified position with the specified bounds
+    /// </summary>
+    /// <param name="texture">The base texture</param>
+    /// <param name="origin">The x and y coordinates of the base texture where the top left corner of the region will be</param>
+    /// <param name="bounds">The x and y coordinates defining the width and height of the region</param>
     public TextureRegion(Texture2D texture, Vector2 origin, Vector2 bounds)
     {
-        this.Texture = texture;
-        this.SourceRectangle = new Rectangle((int) origin.X, (int) origin.Y,(int) bounds.X,(int) bounds.Y);
+        Texture = texture;
+        SourceRectangle = new Rectangle((int) origin.X, (int) origin.Y,(int) bounds.X,(int) bounds.Y);
         
     }
 
-    public TextureRegion(Texture2D texture, Rectangle rect)
+    /// <summary>
+    /// Creates a Texture region in the specified texture in the specified position with the specified bounds
+    /// </summary>
+    /// <param name="texture">The base texture</param>
+    /// <param name="rect">The bounds of the region</param>
+    public TextureRegion(Texture2D texture, Rectangle bounds)
     {
-        this.Texture = texture;
-        this.SourceRectangle = rect;
+        Texture = texture;
+        SourceRectangle = bounds;
     }
 
     

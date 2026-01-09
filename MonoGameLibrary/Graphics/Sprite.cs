@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace MonoGameLibrary.Graphics;
 
-class Sprite
+public class Sprite
 {
 
     /// <summary>
@@ -51,6 +51,11 @@ class Sprite
     /// </remarks>
     public float Rotation {get; set;} = 0;
 
+    /// <summary>
+    /// The depth that the Sprite is drawn at, determines draw order if SpriteBatch.Start has been called 
+    /// with the parameters "sortMode: SpriteSortMode.FrontToBack" or "sortMode: SpriteSortMode.BackToFront"
+    /// </summary>
+    /// <value></value>
     public float Depth {get; set;} = 0;
 
     /// <summary>
@@ -70,18 +75,33 @@ class Sprite
     public float Height => Region.Height * Scale.Y;
     
 
-
+    /// <summary>
+    /// creates an empty sprite
+    /// </summary>
     public Sprite(){}
+
+    /// <summary>
+    /// creates a sprite that uses the specified region as its texture
+    /// </summary>
+    /// <param name="region"></param>
     public Sprite(TextureRegion region)
     {
         Region = region;
     }
 
+    /// <summary>
+    /// moves the scale and rotate origin to the center of the sprite
+    /// </summary>
     public void CenterOrigin()
     {
         Origin = new Vector2(Region.Width, Region.Height) * 0.5f;
     }
 
+    /// <summary>
+    /// Draws the sprite
+    /// </summary>
+    /// <param name="batch">The SpriteBatch instance that will draw the sprite</param>
+    /// <param name="position">The position the sprite will be drawn</param>
     public void Draw(SpriteBatch batch, Vector2 position)
     {
         Region.Draw(
