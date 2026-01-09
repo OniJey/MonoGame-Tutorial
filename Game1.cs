@@ -3,15 +3,15 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
-using MonoGameTutorial.Graphics;
+using MonoGameLibrary.Graphics;
 
 namespace MonoGameTutorial;
 
 public class Game1 : Core
 {
-    private TextureRegion _bat;
+    private Sprite _bat;
 
-    private TextureRegion _slime;
+    private Sprite _slime;
     public Game1() : base("Dungeon Slime", 1280, 720, false)
     {
         
@@ -30,9 +30,11 @@ public class Game1 : Core
 
         TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas.xml");
         
-        _slime = atlas.GetRegion("slime");
+        _slime  = new Sprite(atlas.GetRegion("slime")); 
+        _slime.Scale = Vector2.One * 4;
 
-        _bat = atlas.GetRegion("bat");
+        _bat = new Sprite(atlas.GetRegion("bat"));
+        _bat.Scale = Vector2.One * 4;
     }
 
     protected override void Update(GameTime gameTime)
@@ -51,8 +53,8 @@ public class Game1 : Core
 
         drawSpriteBatch(SpriteBatch, () =>
             {
-                _slime.Draw(SpriteBatch, Vector2.Zero, Color.White, 0, Vector2.Zero, 4.0f, SpriteEffects.None, 1.0f);
-                _bat.Draw(SpriteBatch, new Vector2(_slime.Width * 4.0f + 10, 0), Color.White, 0, Vector2.Zero, 4.0f, SpriteEffects.None, 1.0f);
+                _slime.Draw(SpriteBatch, new Vector2(0,0));
+                _bat.Draw(SpriteBatch, new Vector2(_slime.Width + 10, 0));
             }
         );
 

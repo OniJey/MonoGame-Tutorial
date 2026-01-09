@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-namespace MonoGameTutorial.Graphics;
+namespace MonoGameLibrary.Graphics;
 
 
 /// <summary>

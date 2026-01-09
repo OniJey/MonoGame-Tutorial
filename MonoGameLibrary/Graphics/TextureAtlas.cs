@@ -6,7 +6,7 @@ using System.Xml.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-namespace MonoGameTutorial.Graphics;
+namespace MonoGameLibrary.Graphics;
 
 class TextureAtlas
 {
