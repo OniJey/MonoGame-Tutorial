@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
+using MonoGameLibrary.Input;
 
 namespace MonoGameTutorial;
 
@@ -12,6 +14,40 @@ public class Game1 : Core
     private AnimatedSprite _bat;
 
     private AnimatedSprite _slime;
+
+    private float _slimeSpeed = 5.0f;
+
+    private InputAction _left;
+    private InputAction _right;
+    private InputAction _down;
+    private InputAction _up;
+
+    private List<Enum> _leftInputs = [
+        Keys.A, 
+        Keys.Left,
+        Buttons.DPadLeft
+    ];
+    
+    private List<Enum> _rightInputs = [
+        Keys.D,
+        Keys.Right,
+        Buttons.DPadRight
+    ];
+
+    private List<Enum> _downInputs = [
+        Keys.S,
+        Keys.Down,
+        Buttons.DPadDown
+    ];
+
+    private List<Enum> _upInputs = [
+        Keys.W,
+        Keys.Up,
+        Buttons.DPadUp
+    ];
+
+    private InputManager _input;
+
     public Game1() : base("Dungeon Slime", 800, 450, false)
     {
         
@@ -19,9 +55,20 @@ public class Game1 : Core
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
 
         base.Initialize();
+        _left = new InputAction(_leftInputs, Input, () => {
+            MoveSlime("left", _slimeSpeed);
+        });
+        _right = new InputAction(_rightInputs, Input, ()=> {
+            MoveSlime("right", _slimeSpeed);
+        });
+        _up = new InputAction(_upInputs, Input, () => {
+            MoveSlime("up", _slimeSpeed);
+        });
+        _down = new InputAction(_downInputs, Input, () => {
+            MoveSlime("down", _slimeSpeed);
+        });
     }
 
     protected override void LoadContent()
@@ -47,6 +94,8 @@ public class Game1 : Core
 
         _slime.Update(gameTime);
 
+        DoActionsOnInputHeld(_left, _right, _up, _down);
+
         base.Update(gameTime);
     }
 
@@ -56,7 +105,7 @@ public class Game1 : Core
 
         drawSpriteBatch(SpriteBatch, () =>
             {
-                _slime.Draw(SpriteBatch, new Vector2(0,0));
+                _slime.Draw(SpriteBatch, _slime.Position);
                 _bat.Draw(SpriteBatch, new Vector2(_slime.Width + 10, 0));
             }
         );
@@ -79,5 +128,31 @@ public class Game1 : Core
         batch.Begin();
         func();
         batch.End();
+    }
+    private void MoveSlime(string direction, float magnitude = 5.0f)
+    {
+        switch(direction)
+        {
+            case "right":
+                _slime.Move(magnitude, new Vector2(1, 0));
+                break;
+            case "left":
+                _slime.Move(magnitude, new Vector2(-1, 0));
+                break;
+            case "up":
+                _slime.Move(magnitude, new Vector2(0, -1));
+                break;
+            case "down":
+                _slime.Move(magnitude, new Vector2(0, 1));
+                break;
+        }
+    }
+
+    private void DoActionsOnInputHeld(params InputAction[] actions)
+    {
+        foreach(InputAction action in actions)
+        {
+            action.DoOnInputHeld();
+        }
     }
 }

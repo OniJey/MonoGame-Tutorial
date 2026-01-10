@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGameLibrary.Input;
 
 namespace MonoGameLibrary;
 
@@ -27,7 +28,7 @@ public class Core : Game
     /// <summary>
     /// Gets graphics device used to perform primative rendering tasks
     /// </summary>
-    public GraphicsDevice GraphicsDevice {get; private set;}
+    new public GraphicsDevice GraphicsDevice {get; private set;}
     
 
     /// <summary>
@@ -38,7 +39,12 @@ public class Core : Game
     /// <summary>
     /// gets the Content manager used to load assets that are global in scope
     /// </summary>
-    public static ContentManager Content {get; private set;}
+    new public static ContentManager Content {get; private set;}
+
+    public static InputManager Input {get; private set;}
+
+    public static bool ExitOnEscape {get; set;}
+
 
     /// <summary>
     /// instantiates new core
@@ -78,6 +84,9 @@ public class Core : Game
         //set mouse invisible by default
         IsMouseVisible = true;
 
+        //set ExitOnEscape True by default
+        ExitOnEscape = true;
+
     }
 
     protected override void Initialize()
@@ -86,5 +95,19 @@ public class Core : Game
 
         GraphicsDevice = base.GraphicsDevice;
         SpriteBatch = new SpriteBatch(GraphicsDevice);
+
+        Input = new InputManager();
+    }
+
+    protected override void Update(GameTime gameTime)
+    {
+        Input.Update(gameTime);
+
+        if (ExitOnEscape && Input.Keyboard.IsKeyDown(Keys.Escape))
+        {
+            Exit();
+        }
+
+        base.Update(gameTime);
     }
 }
