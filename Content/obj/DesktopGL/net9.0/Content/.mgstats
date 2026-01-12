@@ -1,4 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Dev/C#/MonoGame Tutorial/Content/images/atlas.png","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/atlas.xnb","TextureProcessor","Texture2DContent",590,16469,0.1703965
-"C:/Dev/C#/MonoGame Tutorial/Content/images/atlas.xml","C:\Dev\C#\MonoGame Tutorial\Content\bin\DesktopGL\Content\images/atlas.xml","CopyItem","File",838,838,0.0019501
-"C:/Dev/C#/MonoGame Tutorial/Content/images/logo.png","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/logo.xnb","TextureProcessor","Texture2DContent",16734,311381,2.3003378
+"c:/Dev/C#/MonoGame Tutorial/Content/images/atlas.png","c:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/atlas.xnb","TextureProcessor","Texture2DContent",1844,65621,0.1469287
+"c:/Dev/C#/MonoGame Tutorial/Content/images/atlas.xml","c:\Dev\C#\MonoGame Tutorial\Content\bin\DesktopGL\Content\images/atlas.xml","CopyItem","File",838,838,0.0019232
+"c:/Dev/C#/MonoGame Tutorial/Content/images/logo.png","c:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/logo.xnb","TextureProcessor","Texture2DContent",16734,311381,0.0730785
+"c:/Dev/C#/MonoGame Tutorial/Content/images/testSquare.png","c:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/testSquare.xnb","TextureProcessor","Texture2DContent",4184,2986069,0.1410868

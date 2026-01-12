@@ -300,9 +300,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dev\\C#\\MonoGame Tutorial\\MonoGame Tutorial.csproj",
-      "projectName": "MonoGame Tutorial",
-      "projectPath": "C:\\Dev\\C#\\MonoGame Tutorial\\MonoGame Tutorial.csproj",
+      "projectUniqueName": "C:\\Dev\\C#\\MonoGame Tutorial\\MonoGame_Tutorial.csproj",
+      "projectName": "MonoGame_Tutorial",
+      "projectPath": "C:\\Dev\\C#\\MonoGame Tutorial\\MonoGame_Tutorial.csproj",
       "packagesPath": "C:\\Users\\whyen\\.nuget\\packages\\",
       "outputPath": "C:\\Dev\\C#\\MonoGame Tutorial\\obj\\",
       "projectStyle": "PackageReference",

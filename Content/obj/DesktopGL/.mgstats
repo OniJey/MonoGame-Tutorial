@@ -1,0 +1,2 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"c:/Dev/C#/MonoGame Tutorial/Content/images/atlas.png","c:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/images/atlas.xnb","TextureProcessor","Texture2DContent",590,16469,0.3241056

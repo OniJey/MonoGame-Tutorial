@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Dev/C#/MonoGame Tutorial/Content/images/atlas.png</SourceFile>
-  <SourceTime>2026-01-08T17:47:14.5469911-05:00</SourceTime>
-  <DestFile>C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/atlas.xnb</DestFile>
-  <DestTime>2026-01-08T18:12:22.7898643-05:00</DestTime>
+  <SourceFile>c:/Dev/C#/MonoGame Tutorial/Content/images/atlas.png</SourceFile>
+  <SourceTime>2026-01-11T22:28:15.4057776-05:00</SourceTime>
+  <DestFile>c:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/atlas.xnb</DestFile>
+  <DestTime>2026-01-11T23:14:47.9316241-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2025-10-20T10:25:32-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

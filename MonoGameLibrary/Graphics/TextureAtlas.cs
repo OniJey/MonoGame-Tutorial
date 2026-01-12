@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
@@ -104,9 +103,70 @@ public class TextureAtlas
         return new Sprite(GetRegion(regionName));
     }
 
+    public PhysicsSprite CreatePhysicsSprite(string regionName)
+    {
+        return new PhysicsSprite(GetRegion(regionName));
+    }
+
+        /// <summary>
+    /// Creates a new animated physics sprite with the specified animation
+    /// </summary>
+    /// <param name="animationName">The name of the animation that is to be used as specified in the .xml file</param>
+    /// <param name="velocity">How fast and in what direction the PhysicsSprite is moving in pixels/second</param>
+    public PhysicsSprite CreatePhysicsSprite(string regionName, Vector2 velocity)
+    {
+        return new AnimatedPhysicsSprite(GetAnimation(regionName), velocity);
+    }
+
+    /// <summary>
+    /// Creates a new animated physics sprite with the specified animation
+    /// </summary>
+    /// <param name="animationName">The name of the animation that is to be used as specified in the .xml file</param>
+    /// <param name="velocity">How fast and in what direction the PhysicsSprite is moving in pixels/second</param>
+    /// <param name="acceleration">The rate of change of the velocity in pixels/second/second</param>
+    public PhysicsSprite CreatePhysicsSprite(string regionName, Vector2 velocity, Vector2 acceleration)
+    {
+        return new PhysicsSprite(GetRegion(regionName), velocity, acceleration);
+    }
+
+    /// <summary>
+    /// Creates a new Animated sprite using the name of the animation
+    /// </summary>
+    /// <param name="animationName">the name of the animation as specified in the .xml file</param>
+    /// <returns>Sprite that uses the animation to be drawn</returns>
     public AnimatedSprite CreateAnimatedSprite(string animationName)
     {
         return new AnimatedSprite(GetAnimation(animationName));
+    }
+
+    /// <summary>
+    /// Creates a new animated physics sprite with the specified animation
+    /// </summary>
+    /// <param name="animationName">The name of the animation that is to be used as specified in the .xml file</param>
+    public AnimatedPhysicsSprite CreateAnimatedPhysicsSprite(string animationName)
+    {
+        return new AnimatedPhysicsSprite(GetAnimation(animationName));
+    }
+
+    /// <summary>
+    /// Creates a new animated physics sprite with the specified animation and velocity
+    /// </summary>
+    /// <param name="animationName">The name of the animation that is to be used as specified in the .xml file</param>
+    /// <param name="velocity">How fast and in what direction the PhysicsSprite is moving in pixels/second</param>
+    public AnimatedPhysicsSprite CreateAnimatedPhysicsSprite(string animationName, Vector2 velocity)
+    {
+        return new AnimatedPhysicsSprite(GetAnimation(animationName), velocity);
+    }
+
+    /// <summary>
+    /// Creates a new animated physics sprite with the specified animation and velocity
+    /// </summary>
+    /// <param name="animationName">The name of the animation that is to be used as specified in the .xml file</param>
+    /// <param name="velocity">How fast and in what direction the PhysicsSprite is moving in pixels/second</param>
+    /// <param name="acceleration">The rate of change of the velocity in pixels/second/second</param>
+    public AnimatedPhysicsSprite CreateAnimatedPhysicsSprite(string animationName, Vector2 velocity, Vector2 acceleration)
+    {
+        return new AnimatedPhysicsSprite(GetAnimation(animationName), velocity, acceleration);
     }
 
     /// <summary>

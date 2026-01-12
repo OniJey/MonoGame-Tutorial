@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame Tutorial", "MonoGame Tutorial.csproj", "{B8E68EBA-1DF7-1B19-9DED-293E6EDDAD37}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame_Tutorial", "MonoGame_Tutorial.csproj", "{35C128C6-3C3D-8687-34CF-551CF185749E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +15,18 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B8E68EBA-1DF7-1B19-9DED-293E6EDDAD37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8E68EBA-1DF7-1B19-9DED-293E6EDDAD37}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8E68EBA-1DF7-1B19-9DED-293E6EDDAD37}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{B8E68EBA-1DF7-1B19-9DED-293E6EDDAD37}.Debug|x64.Build.0 = Debug|Any CPU
-		{B8E68EBA-1DF7-1B19-9DED-293E6EDDAD37}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B8E68EBA-1DF7-1B19-9DED-293E6EDDAD37}.Debug|x86.Build.0 = Debug|Any CPU
-		{B8E68EBA-1DF7-1B19-9DED-293E6EDDAD37}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8E68EBA-1DF7-1B19-9DED-293E6EDDAD37}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8E68EBA-1DF7-1B19-9DED-293E6EDDAD37}.Release|x64.ActiveCfg = Release|Any CPU
-		{B8E68EBA-1DF7-1B19-9DED-293E6EDDAD37}.Release|x64.Build.0 = Release|Any CPU
-		{B8E68EBA-1DF7-1B19-9DED-293E6EDDAD37}.Release|x86.ActiveCfg = Release|Any CPU
-		{B8E68EBA-1DF7-1B19-9DED-293E6EDDAD37}.Release|x86.Build.0 = Release|Any CPU
+		{35C128C6-3C3D-8687-34CF-551CF185749E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35C128C6-3C3D-8687-34CF-551CF185749E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35C128C6-3C3D-8687-34CF-551CF185749E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{35C128C6-3C3D-8687-34CF-551CF185749E}.Debug|x64.Build.0 = Debug|Any CPU
+		{35C128C6-3C3D-8687-34CF-551CF185749E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{35C128C6-3C3D-8687-34CF-551CF185749E}.Debug|x86.Build.0 = Debug|Any CPU
+		{35C128C6-3C3D-8687-34CF-551CF185749E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35C128C6-3C3D-8687-34CF-551CF185749E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35C128C6-3C3D-8687-34CF-551CF185749E}.Release|x64.ActiveCfg = Release|Any CPU
+		{35C128C6-3C3D-8687-34CF-551CF185749E}.Release|x64.Build.0 = Release|Any CPU
+		{35C128C6-3C3D-8687-34CF-551CF185749E}.Release|x86.ActiveCfg = Release|Any CPU
+		{35C128C6-3C3D-8687-34CF-551CF185749E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

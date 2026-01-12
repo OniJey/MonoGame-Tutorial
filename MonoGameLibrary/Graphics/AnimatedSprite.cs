@@ -28,11 +28,18 @@ public class AnimatedSprite : Sprite
         }
     }
 
+
+    /// <summary>
+    /// pauses the sprite's animation
+    /// </summary>
     public void PauseAnimation()
     {
         _isPlaying = false;
     }
-
+    
+    /// <summary>
+    /// plays the sprites animation
+    /// </summary>
     public void PlayAnimation()
     {
         _isPlaying = true;
@@ -43,6 +50,10 @@ public class AnimatedSprite : Sprite
     /// </summary>
     public AnimatedSprite () {}
 
+    /// <summary>
+    /// create a new animated sprite using the specified animation
+    /// </summary>
+    /// <param name="animation">the animation that will be played where this sprite is</param>
     public AnimatedSprite(Animation animation)
     {
         Animation = animation;
