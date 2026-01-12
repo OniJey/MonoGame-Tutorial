@@ -30,32 +30,40 @@ public class Game1 : Core
 
     private Song _theme;
 
-    private float _slimeSpeed = 5.0f;
+    private readonly float _slimeSpeed = 5.0f;
+
+    private SpriteFont _font;
+
+    private Vector2 _scoreTextPosition;
+
+    private Vector2 _scoreTextOrigin;
+
+    private int _score;
 
     private InputAction _left;
     private InputAction _right;
     private InputAction _down;
     private InputAction _up;
 
-    private List<Enum> _leftInputs = [
+    private readonly List<Enum> _leftInputs = [
         Keys.A, 
         Keys.Left,
         Buttons.DPadLeft
     ];
     
-    private List<Enum> _rightInputs = [
+    private readonly List<Enum> _rightInputs = [
         Keys.D,
         Keys.Right,
         Buttons.DPadRight
     ];
 
-    private List<Enum> _downInputs = [
+    private readonly List<Enum> _downInputs = [
         Keys.S,
         Keys.Down,
         Buttons.DPadDown
     ];
 
-    private List<Enum> _upInputs = [
+    private readonly List<Enum> _upInputs = [
         Keys.W,
         Keys.Up,
         Buttons.DPadUp
@@ -101,12 +109,23 @@ public class Game1 : Core
             MoveSlime("down", _slimeSpeed);
         });
 
-        
+        Audio.PlaySong(_theme);
+
+        // Set the position of the score text to align to the left edge of the
+        // room bounds, and to vertically be at the center of the first tile.
+        _scoreTextPosition = new Vector2(_roomBounds.Left, _tileMap.TileHeight * 0.5f);
+
+        // Set the origin of the text so it is left-centered.
+        float scoreTextYOrigin = _font.MeasureString("Score").Y * 0.5f;
+        _scoreTextOrigin = new Vector2(0, scoreTextYOrigin);
     }
 
     protected override void LoadContent()
     {
         base.LoadContent();
+
+        //Load Font
+        _font = Content.Load<SpriteFont>("fonts/04B_30");
 
         //Load Sounds
         _batBounce = Content.Load<SoundEffect>("audio/bounce");
@@ -162,7 +181,7 @@ public class Game1 : Core
         {
             if(other.Name != "slime")
             {
-                _batBounce.Play();
+                Audio.PlaySoundEffect(_batBounce);
             }
         };
         _bat.CenterOrigin();
@@ -209,7 +228,17 @@ public class Game1 : Core
                 _tileMap.Draw(SpriteBatch);
                 _slime.Draw(SpriteBatch, _slime.Position);
                 _bat.Draw(SpriteBatch, _bat.Position);
-
+                SpriteBatch.DrawString(
+                    _font,              
+                    $"Score: {_score}", 
+                    _scoreTextPosition, 
+                    Color.White,        
+                    0.0f,               
+                    _scoreTextOrigin,   
+                    1.0f,               
+                    SpriteEffects.None, 
+                    0.0f                
+                );
             }
         );
 
@@ -252,11 +281,10 @@ public class Game1 : Core
         NewVelocity *= _bat.Velocity.Length();
         _bat.Velocity = NewVelocity;
 
-        _slimeEat.Play();
+        Audio.PlaySoundEffect(_slimeEat);
 
-        
+        _score += 100;
     }
-
 
     private void DoActionsOnInputHeld(params InputAction[] actions)
     {

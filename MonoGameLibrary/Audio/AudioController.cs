@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace MonoGameLibrary.Audio;
 
-class AudioController
+public class AudioController
 {
     /// <summary>
     /// The list of active sound effects to do collective action against
@@ -96,12 +96,16 @@ class AudioController
     /// </summary>
     public void update()
     {
-        foreach(SoundEffectInstance soundEffect in _activeSoundEffectInstances)
+        for(int i = _activeSoundEffectInstances.Count - 1; i >=0; i--)
         {
-            if(soundEffect.State == SoundState.Stopped)
+            SoundEffectInstance instance = _activeSoundEffectInstances[i];
+            if(instance.State == SoundState.Stopped)
             {
-                soundEffect.Dispose();
-                _activeSoundEffectInstances.Remove(soundEffect);
+                if(!instance.IsDisposed)
+                {
+                    instance.Dispose();
+                }
+                _activeSoundEffectInstances.RemoveAt(i);
             }
         }
     }

@@ -39,3 +39,4 @@ C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\audio\bounce.xnb
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\audio\collect.xnb
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\audio\theme.ogg
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\audio\theme.xnb
+C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\fonts\04B_30.xnb
