@@ -98,14 +98,14 @@ public class TextureAtlas
     /// </summary>
     /// <param name="regionName">the name of the region as specified in the .xml file or AddRegion</param>
     /// <returns>Sprite that uses the region of the atlas specified to be drawn</returns>
-    public Sprite CreateSprite(string regionName)
+    public Sprite CreateSprite(string regionName, string name)
     {
-        return new Sprite(GetRegion(regionName));
+        return new Sprite(GetRegion(regionName), name);
     }
 
-    public PhysicsSprite CreatePhysicsSprite(string regionName)
+    public PhysicsSprite CreatePhysicsSprite(string regionName, string name)
     {
-        return new PhysicsSprite(GetRegion(regionName));
+        return new PhysicsSprite(GetRegion(regionName), name);
     }
 
         /// <summary>
@@ -113,9 +113,9 @@ public class TextureAtlas
     /// </summary>
     /// <param name="animationName">The name of the animation that is to be used as specified in the .xml file</param>
     /// <param name="velocity">How fast and in what direction the PhysicsSprite is moving in pixels/second</param>
-    public PhysicsSprite CreatePhysicsSprite(string regionName, Vector2 velocity)
+    public PhysicsSprite CreatePhysicsSprite(string regionName, Vector2 velocity, string name)
     {
-        return new AnimatedPhysicsSprite(GetAnimation(regionName), velocity);
+        return new AnimatedPhysicsSprite(GetAnimation(regionName), velocity, name);
     }
 
     /// <summary>
@@ -124,9 +124,9 @@ public class TextureAtlas
     /// <param name="animationName">The name of the animation that is to be used as specified in the .xml file</param>
     /// <param name="velocity">How fast and in what direction the PhysicsSprite is moving in pixels/second</param>
     /// <param name="acceleration">The rate of change of the velocity in pixels/second/second</param>
-    public PhysicsSprite CreatePhysicsSprite(string regionName, Vector2 velocity, Vector2 acceleration)
+    public PhysicsSprite CreatePhysicsSprite(string regionName, Vector2 velocity, Vector2 acceleration, string name)
     {
-        return new PhysicsSprite(GetRegion(regionName), velocity, acceleration);
+        return new PhysicsSprite(GetRegion(regionName), velocity, acceleration, name);
     }
 
     /// <summary>
@@ -134,18 +134,18 @@ public class TextureAtlas
     /// </summary>
     /// <param name="animationName">the name of the animation as specified in the .xml file</param>
     /// <returns>Sprite that uses the animation to be drawn</returns>
-    public AnimatedSprite CreateAnimatedSprite(string animationName)
+    public AnimatedSprite CreateAnimatedSprite(string animationName, string name)
     {
-        return new AnimatedSprite(GetAnimation(animationName));
+        return new AnimatedSprite(GetAnimation(animationName), name);
     }
 
     /// <summary>
     /// Creates a new animated physics sprite with the specified animation
     /// </summary>
     /// <param name="animationName">The name of the animation that is to be used as specified in the .xml file</param>
-    public AnimatedPhysicsSprite CreateAnimatedPhysicsSprite(string animationName)
+    public AnimatedPhysicsSprite CreateAnimatedPhysicsSprite(string animationName, string name)
     {
-        return new AnimatedPhysicsSprite(GetAnimation(animationName));
+        return new AnimatedPhysicsSprite(GetAnimation(animationName), name);
     }
 
     /// <summary>
@@ -153,9 +153,9 @@ public class TextureAtlas
     /// </summary>
     /// <param name="animationName">The name of the animation that is to be used as specified in the .xml file</param>
     /// <param name="velocity">How fast and in what direction the PhysicsSprite is moving in pixels/second</param>
-    public AnimatedPhysicsSprite CreateAnimatedPhysicsSprite(string animationName, Vector2 velocity)
+    public AnimatedPhysicsSprite CreateAnimatedPhysicsSprite(string animationName, Vector2 velocity, string name)
     {
-        return new AnimatedPhysicsSprite(GetAnimation(animationName), velocity);
+        return new AnimatedPhysicsSprite(GetAnimation(animationName), velocity, name);
     }
 
     /// <summary>
@@ -164,9 +164,9 @@ public class TextureAtlas
     /// <param name="animationName">The name of the animation that is to be used as specified in the .xml file</param>
     /// <param name="velocity">How fast and in what direction the PhysicsSprite is moving in pixels/second</param>
     /// <param name="acceleration">The rate of change of the velocity in pixels/second/second</param>
-    public AnimatedPhysicsSprite CreateAnimatedPhysicsSprite(string animationName, Vector2 velocity, Vector2 acceleration)
+    public AnimatedPhysicsSprite CreateAnimatedPhysicsSprite(string animationName, Vector2 velocity, Vector2 acceleration, string name)
     {
-        return new AnimatedPhysicsSprite(GetAnimation(animationName), velocity, acceleration);
+        return new AnimatedPhysicsSprite(GetAnimation(animationName), velocity, acceleration, name);
     }
 
     /// <summary>

@@ -4,11 +4,17 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>c:/Dev/C#/MonoGame Tutorial/Content/images/atlas.png</File>
-    <File>c:/Dev/C#/MonoGame Tutorial/Content/images/logo.png</File>
-    <File>c:/Dev/C#/MonoGame Tutorial/Content/images/testSquare.png</File>
+    <File>C:/Dev/C#/MonoGame Tutorial/Content/audio/bounce.wav</File>
+    <File>C:/Dev/C#/MonoGame Tutorial/Content/audio/collect.wav</File>
+    <File>C:/Dev/C#/MonoGame Tutorial/Content/audio/theme.ogg</File>
+    <File>C:/Dev/C#/MonoGame Tutorial/Content/images/atlas.png</File>
+    <File>C:/Dev/C#/MonoGame Tutorial/Content/images/logo.png</File>
+    <File>C:/Dev/C#/MonoGame Tutorial/Content/images/testSquare.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

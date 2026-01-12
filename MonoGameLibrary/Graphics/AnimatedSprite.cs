@@ -54,9 +54,10 @@ public class AnimatedSprite : Sprite
     /// create a new animated sprite using the specified animation
     /// </summary>
     /// <param name="animation">the animation that will be played where this sprite is</param>
-    public AnimatedSprite(Animation animation)
+    public AnimatedSprite(Animation animation, string name)
     {
         Animation = animation;
+        Name = name;
     }
 
 

@@ -54,9 +54,11 @@ public class AnimatedPhysicsSprite : PhysicsSprite
     /// Creates a new animated physics sprite with the specified animation
     /// </summary>
     /// <param name="animation">The animation that is to be used</param>
-    public AnimatedPhysicsSprite(Animation animation)
+    /// <param name="name"> The name of the sprite </param>
+    public AnimatedPhysicsSprite(Animation animation, string name)
     {
         Animation = animation;
+        Name = name;
     }
 
     /// <summary>
@@ -64,10 +66,12 @@ public class AnimatedPhysicsSprite : PhysicsSprite
     /// </summary>
     /// <param name="animation">The animation that is to be used</param>
     /// <param name="velocity">The how fast and in what direction the PhysicsSprite is moving in pixels/second</param>
-    public AnimatedPhysicsSprite(Animation animation, Vector2 velocity)
+    ///     /// <param name="name"> The name of the sprite </param>
+    public AnimatedPhysicsSprite(Animation animation, Vector2 velocity, string name)
     {
         Animation = animation;
         Velocity = velocity;
+        Name = name;
     }
 
 
@@ -77,11 +81,13 @@ public class AnimatedPhysicsSprite : PhysicsSprite
     /// <param name="animation">The animation that is to be used</param>
     /// <param name="velocity">How fast and in what direction the PhysicsSprite is moving in pixels/second</param>
     /// <param name="acceleration">The rate of change of the velocity in pixels/second/second</param>
-    public AnimatedPhysicsSprite(Animation animation, Vector2 velocity, Vector2 acceleration)
+    /// <param name="name"> The name of the sprite </param>
+    public AnimatedPhysicsSprite(Animation animation, Vector2 velocity, Vector2 acceleration, string name)
     {
         Animation = animation;
         Velocity = velocity;
         Acceleration = acceleration;
+        Name = name;
     }
 
 

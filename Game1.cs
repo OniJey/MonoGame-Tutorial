@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -21,6 +23,12 @@ public class Game1 : Core
     private TileMap _tileMap;
 
     private Rectangle _roomBounds;
+
+    private SoundEffect _batBounce;
+
+    private SoundEffect _slimeEat;
+
+    private Song _theme;
 
     private float _slimeSpeed = 5.0f;
 
@@ -78,7 +86,7 @@ public class Game1 : Core
         _slime.Position = new Vector2(centerColumn * _tileMap.TileWidth, centerRow * _tileMap.TileHeight);
 
         // Initial bat position will be in the top left corner of the room
-        _bat.Position = new Vector2(_roomBounds.Left, _roomBounds.Top);
+        _bat.Position = new Vector2(2* _tileMap.TileWidth, 2* _tileMap.TileHeight);
 
         _left = new InputAction(_leftInputs, Input, () => {
             MoveSlime("left", _slimeSpeed);
@@ -100,12 +108,37 @@ public class Game1 : Core
     {
         base.LoadContent();
 
-        TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas.xml");
+        //Load Sounds
+        _batBounce = Content.Load<SoundEffect>("audio/bounce");
+        _slimeEat = Content.Load<SoundEffect>("audio/collect");
+
+        //Load Theme Song
+
+        _theme = Content.Load<Song>("audio/theme");
+
+        if(MediaPlayer.State == MediaState.Playing)
+        {
+            MediaPlayer.Stop();
+        }
+
+        MediaPlayer.Play(_theme);  
+
+        MediaPlayer.IsRepeating = true;
+
+        //Load textures
+
         
-        _slime  = atlas.CreateAnimatedSprite("slime-animation");
+        TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas.xml");
+
+        _tileMap = TileMap.FromFile(Content, "images/map-definition.xml");
+        _tileMap.Scale *= 4;
+        
+        //Initialize Sprites
+
+        _slime  = atlas.CreateAnimatedSprite("slime-animation", "slime");
         _slime.CollisionType = CollisionTypes.AABB;
         _slime.CollisionReaction = CollisionReactions.Trigger;
-        _slime.TriggerAction = slimeCollisionAction;
+        _slime.TriggerAction = ( Sprite x, Sprite y) => slimeCollisionAction(x, (PhysicsSprite) y);
         _slime.Scale = Vector2.One * 4;
 
         Vector2 randomDir = new Vector2(_rng.Next(-100, 100)/100.0f, _rng.Next(-100, 100)/100.0f);
@@ -115,21 +148,26 @@ public class Game1 : Core
 
         _bounds = new Sprite();
         _bounds.Region = new TextureRegion(null, new Rectangle(0,0,1,1)); // No visual
-        _bounds.Position = Vector2.Zero;
-        _bounds.Scale = new Vector2(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
+        _bounds.Position = Vector2.One * _tileMap.TileHeight;
+        _bounds.Scale = new Vector2(Graphics.PreferredBackBufferWidth-2*_tileMap.TileWidth, Graphics.PreferredBackBufferHeight-2*_tileMap.TileHeight);
         _bounds.CollisionType = CollisionTypes.Container;
         _bounds.CollisionReaction = CollisionReactions.BlockAnchored;
 
-        _bat = atlas.CreateAnimatedPhysicsSprite("bat-animation", randomDir);
+        _bat = atlas.CreateAnimatedPhysicsSprite("bat-animation", randomDir, "bat");
         _bat.Scale = Vector2.One * 4;
         _bat.CollisionRadius =  (int) _bat.Width/2; 
         _bat.CollisionType = CollisionTypes.Circle;
-        _bat.CollisionReaction = CollisionReactions.Bounce;
+        _bat.CollisionReaction = CollisionReactions.BounceTrigger;
+        _bat.TriggerAction = (Sprite bat, Sprite other) =>
+        {
+            if(other.Name != "slime")
+            {
+                _batBounce.Play();
+            }
+        };
         _bat.CenterOrigin();
 
-        // Create the tilemap from the XML configuration file.
-        _tileMap = TileMap.FromFile(Content, "images/map-definition.xml");
-        _tileMap.Scale *= 4;
+
     }
 
     protected override void Update(GameTime gameTime)
@@ -139,17 +177,14 @@ public class Game1 : Core
 
         
         _bat.Update(gameTime);
-
         _bat.doCollisionReaction(_bounds);
-        _bat.doCollisionReaction(_slime);
 
         _slime.Update(gameTime);
+        _slime.doCollisionReaction(_bat);
 
         _bounds.doCollisionReaction(_slime);
 
-
         DoActionsOnInputHeld(_left, _right, _up, _down);
-
 
         // Debug output
         Console.WriteLine($"Slime Position: {_slime.Position}");
@@ -180,17 +215,6 @@ public class Game1 : Core
 
         base.Draw(gameTime);
     }
-
-    private static Vector2 getCenterVector(int width, int height)
-    {
-        return new Vector2(width * 0.5f, height * 0.5f);
-    }
-
-    private static Vector2 getCenterVector(Rectangle rect)
-    {
-        return new Vector2(rect.Width * 0.5f, rect.Height * 0.5f);
-    }
-
     private static void drawSpriteBatch(SpriteBatch batch, Action func)
     {
         batch.Begin();
@@ -216,13 +240,20 @@ public class Game1 : Core
         }
     }
 
-    private static void Debug()
+    private void slimeCollisionAction(Sprite slime, PhysicsSprite bat)
     {
-        
-    }
+        //randomize bat's position
+        int column = _rng.Next(2, _tileMap.Columns - 2);
+        int row = _rng.Next(2, _tileMap.Rows -2);
 
-    private static void slimeCollisionAction(Sprite sprite1, Sprite sprite2)
-    {
+        _bat.Position = new Vector2(column * _tileMap.TileWidth, row * _tileMap.TileHeight);
+        Vector2 NewVelocity = new Vector2(_rng.Next(1,100)/100f, _rng.Next(1, 100)/100f);
+        NewVelocity.Normalize();
+        NewVelocity *= _bat.Velocity.Length();
+        _bat.Velocity = NewVelocity;
+
+        _slimeEat.Play();
+
         
     }
 

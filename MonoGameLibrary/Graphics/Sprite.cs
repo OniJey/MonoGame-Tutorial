@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace MonoGameLibrary.Graphics;
@@ -8,6 +9,10 @@ public class Sprite
     private Action<Sprite, Sprite> _triggerAction {get; set;}
 
     private Vector2 _previousPosition {get; set;}
+
+    private static List<string> _spriteNames = new List<string>();
+
+    public string Name {get; set;}
 
     /// <summary>
     /// The position of the sprite relative to the window
@@ -132,9 +137,18 @@ public class Sprite
     /// creates a sprite that uses the specified region as its texture
     /// </summary>
     /// <param name="region">A region of a texture file</param>
-    public Sprite(TextureRegion region)
+    public Sprite(TextureRegion region, string name)
     {
         Region = region;
+        if(!_spriteNames.Contains(name))
+        {
+            Name = name;
+            _spriteNames.Add(name);
+        } else
+        {
+            throw new ArgumentException($"A sprite with the name '{name}' already exists");
+        }
+
     }
 
     /// <summary>
@@ -408,7 +422,7 @@ public void Block(Sprite other, bool isAnchored)
 
     protected void Trigger(Sprite other)
     {
-        other.TriggerAction(this, other);
+        TriggerAction(this, other);
     }
 
     /// <summary>

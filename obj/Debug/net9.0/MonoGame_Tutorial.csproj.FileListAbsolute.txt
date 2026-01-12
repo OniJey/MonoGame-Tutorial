@@ -35,3 +35,7 @@ c:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\refint\MonoGame_Tutorial.dll
 c:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame_Tutorial.pdb
 c:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\MonoGame_Tutorial.genruntimeconfig.cache
 c:\Dev\C#\MonoGame Tutorial\obj\Debug\net9.0\ref\MonoGame_Tutorial.dll
+C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\audio\bounce.xnb
+C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\audio\collect.xnb
+C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\audio\theme.ogg
+C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\audio\theme.xnb

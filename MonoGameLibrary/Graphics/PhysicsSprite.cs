@@ -44,9 +44,10 @@ public class PhysicsSprite : Sprite
     /// Instantiates a new physicsSprite with no velocity or acceleration that uses the specified TextureRegion as a texture
     /// </summary>
     /// <param name="region">The TextureRegion that will render when Draw() is called on this sprite</param>
-    public PhysicsSprite(TextureRegion region)
+    public PhysicsSprite(TextureRegion region, string name)
     {
         Region = region;
+        Name = name;
     }
 
     /// <summary>
@@ -54,10 +55,11 @@ public class PhysicsSprite : Sprite
     /// </summary>
     /// <param name="region">The TextureRegion that will render when Draw() is called on this sprite</param>
     /// <param name="velocity">The speed and direction of the Sprite</param>
-    public PhysicsSprite(TextureRegion region, Vector2 velocity)
+    public PhysicsSprite(TextureRegion region, Vector2 velocity, string name)
     {
         Region = region;
         Velocity = velocity;
+        Name = name;
     }
 
     /// <summary>
@@ -66,11 +68,12 @@ public class PhysicsSprite : Sprite
     /// <param name="region">The TextureRegion that will render when Draw() is called on this sprite</param>
     /// <param name="velocity">The speed in pixels/second and direction of the Sprite</param>
     /// <param name="acceleration">The change in velocity per second</param>
-    public PhysicsSprite(TextureRegion region, Vector2 velocity, Vector2 acceleration)
+    public PhysicsSprite(TextureRegion region, Vector2 velocity, Vector2 acceleration, string name)
     {
         Region = region;
         Velocity = velocity;
         Acceleration = acceleration;
+        Name = name;
     }
 
     /// <summary>
@@ -107,7 +110,7 @@ public class PhysicsSprite : Sprite
                 return;
             case CollisionReactions.BounceTrigger:
                 Bounce(other);
-                Trigger(other);
+                Trigger(this);
                 return;
         }
     }
