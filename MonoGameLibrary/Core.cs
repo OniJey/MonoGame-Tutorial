@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary.Audio;
 using MonoGameLibrary.Input;
+using MonoGameLibrary.Scenes;
 
 namespace MonoGameLibrary;
 
@@ -21,21 +22,27 @@ public class Core : Game
     /// </summary>
     public static Core Instance => s_instance;
 
+    public static Scene s_activeScene;
+
+    public static Scene s_nextScene;
+
+
+
     ///<summary>
     ///Gets the graphics device manager to control graphics presentation
     ///</summary>
-    public GraphicsDeviceManager Graphics {get;private set;}
+    public static GraphicsDeviceManager Graphics {get;private set;}
 
     /// <summary>
     /// Gets graphics device used to perform primative rendering tasks
     /// </summary>
-    new public GraphicsDevice GraphicsDevice {get; private set;}
+    new public static GraphicsDevice GraphicsDevice {get; private set;}
     
 
     /// <summary>
     /// gets spritebatch used for all 2d rendering
     /// </summary>
-    public SpriteBatch SpriteBatch {get; private set;}
+    public static SpriteBatch SpriteBatch {get; private set;}
 
     /// <summary>
     /// gets the Content manager used to load assets that are global in scope
@@ -46,7 +53,7 @@ public class Core : Game
 
     public static bool ExitOnEscape {get; set;}
 
-    public AudioController Audio {get; set;}
+    public static AudioController Audio {get; set;}
 
 
     /// <summary>
@@ -96,6 +103,8 @@ public class Core : Game
     {
         base.Initialize();
 
+        s_activeScene.Initialize();
+
         GraphicsDevice = base.GraphicsDevice;
         SpriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -110,11 +119,21 @@ public class Core : Game
 
         Audio.Dispose();
     }
-    
+
     protected override void Update(GameTime gameTime)
     {
         Input.Update(gameTime);
         Audio.update();
+
+        if(s_nextScene != null)
+        {
+            TransitionScene();
+        }
+
+        if(s_activeScene != null)
+        {
+            s_activeScene.Update(gameTime);
+        }
 
         if (ExitOnEscape && Input.Keyboard.IsKeyDown(Keys.Escape))
         {
@@ -123,4 +142,51 @@ public class Core : Game
 
         base.Update(gameTime);
     }
+
+    protected override void Draw(GameTime gameTime)
+    {
+        if(s_activeScene != null)
+        {
+            s_activeScene.Draw(gameTime);
+        }
+        base.Draw(gameTime);
+    }
+
+    public static void ChangeScene(Scene next)
+    {
+        // Only set the next scene value if it is not the same
+        // instance as the currently active scene.
+        if (s_activeScene != next)
+        {
+            s_nextScene = next;
+        }
+    }
+
+    private static void TransitionScene()
+    {
+        // If there is an active scene, dispose of it.
+        if (s_activeScene != null)
+        {
+            s_activeScene.Dispose();
+        }
+
+        // Force the garbage collector to collect to ensure memory is cleared.
+        GC.Collect();
+
+        // Change the currently active scene to the new scene.
+        s_activeScene = s_nextScene;
+
+        // Null out the next scene value so it does not trigger a change over and over.
+        s_nextScene = null;
+
+        // If the active scene now is not null, initialize it.
+        // Remember, just like with Game, the Initialize call also calls the
+        // Scene.LoadContent
+        if (s_activeScene != null)
+        {
+            s_activeScene.Initialize();
+        }
+    }
+
+    
 }

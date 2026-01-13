@@ -98,7 +98,7 @@ public class InputAction
             switch(input)
             {
                 case Keys key:
-                    if(Input.Keyboard.justPressed(key)) return true;
+                    if(Input.Keyboard.JustPressed(key)) return true;
                     break;
                 case Buttons button:
                     if(Input.GamePads[(int)playerIndex].justPressed(button)) return true;

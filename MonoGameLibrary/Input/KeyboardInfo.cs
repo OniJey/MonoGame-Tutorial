@@ -41,7 +41,7 @@ public class KeyboardInfo
     /// </summary>
     /// <param name="key">The key that was pressed</param>
     /// <returns>true if key was up last frame and down this frame; false otherwise</returns>
-    public bool justPressed(Keys key)
+    public bool JustPressed(Keys key)
     {
         return PreviousState.IsKeyUp(key) && IsKeyDown(key);
     }
@@ -51,7 +51,7 @@ public class KeyboardInfo
     /// </summary>
     /// <param name="key"></param>
     /// <returns>true if key was down last frame and up this frame; false otherwise</returns>
-    public bool justReleased(Keys key)
+    public bool JustReleased(Keys key)
     {
         return PreviousState.IsKeyDown(key) && IsKeyUp(key);
     }
