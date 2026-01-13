@@ -27,6 +27,15 @@ public class TitleScene : Scene
 
     private Vector2 _enterTextPos;
 
+    private Texture2D _bgTexture;
+
+    private Rectangle _bgDestination;
+
+    private Vector2 _bgOffset;
+
+
+    private float _scorllSpeed = 50.0f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -47,6 +56,12 @@ public class TitleScene : Scene
         size = _font.MeasureString(PRESS_ENTER_TEXT);
         _enterTextPos = new Vector2(640, 620);
         _enterTextOrigin = size * 0.5f;
+
+        //set the starting offset to zero 
+        _bgOffset = Vector2.Zero;
+
+        //set the bg to fill the screen
+        _bgDestination = Core.GraphicsDevice.PresentationParameters.Bounds;
     }
 
     public override void LoadContent()
@@ -54,8 +69,11 @@ public class TitleScene : Scene
         //load the standard size font from Content
         _font = Content.Load<SpriteFont>("fonts/04B_30");
 
-        //load the 5x sized font from the Content
+        //load the 5x sized font from Content
         _font5x = Content.Load<SpriteFont>("fonts/04B_30_5x");
+
+        //load the background texture from Content
+        _bgTexture = Content.Load<Texture2D>("images/background-pattern");
         base.LoadContent();
     }
 
@@ -66,11 +84,25 @@ public class TitleScene : Scene
         {
             Core.ChangeScene(new GameScene());
         }
+
+        //update the background offset
+        float offset = _scorllSpeed*(float) gameTime.ElapsedGameTime.TotalSeconds;
+        _bgOffset.X -= offset;
+        _bgOffset.Y -= offset;
+
+        //ensure patterns do go beyond the bounds of the image
+        _bgOffset.X %= _bgTexture.Width;
+        _bgOffset.Y %= _bgTexture.Height;
     }
 
     public override void Draw(GameTime gameTime)
     {
         Core.GraphicsDevice.Clear(new Color(32, 40, 78, 255));
+
+        // Draw the background pattern first using the PointWrap sampler state.
+        Core.SpriteBatch.Begin(samplerState: SamplerState.PointWrap);
+        Core.SpriteBatch.Draw(_bgTexture, _bgDestination, new Rectangle(_bgOffset.ToPoint(), _bgDestination.Size), Color.White * 0.5f);
+        Core.SpriteBatch.End();
 
         // Begin the sprite batch to prepare for rendering.
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);

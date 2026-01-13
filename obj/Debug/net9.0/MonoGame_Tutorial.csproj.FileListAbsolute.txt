@@ -41,3 +41,4 @@ C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\audio\theme.ogg
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\audio\theme.xnb
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\fonts\04B_30.xnb
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\fonts\04B_30_5x.xnb
+C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\images\background-pattern.xnb

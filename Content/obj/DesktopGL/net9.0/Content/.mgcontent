@@ -10,10 +10,12 @@
     <File>C:/Dev/C#/MonoGame Tutorial/Content/fonts/04B_30_5x.spritefont</File>
     <File>C:/Dev/C#/MonoGame Tutorial/Content/fonts/04B_30.spritefont</File>
     <File>C:/Dev/C#/MonoGame Tutorial/Content/images/atlas.png</File>
+    <File>C:/Dev/C#/MonoGame Tutorial/Content/images/background-pattern.png</File>
     <File>C:/Dev/C#/MonoGame Tutorial/Content/images/logo.png</File>
     <File>C:/Dev/C#/MonoGame Tutorial/Content/images/testSquare.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

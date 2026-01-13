@@ -103,14 +103,14 @@ public class Core : Game
     {
         base.Initialize();
 
-        s_activeScene.Initialize();
-
         GraphicsDevice = base.GraphicsDevice;
         SpriteBatch = new SpriteBatch(GraphicsDevice);
 
         Input = new InputManager();
 
         Audio = new AudioController();
+
+        s_activeScene.Initialize();
     }
 
     protected override void UnloadContent()

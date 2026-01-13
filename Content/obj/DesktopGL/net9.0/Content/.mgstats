@@ -6,5 +6,6 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "C:/Dev/C#/MonoGame Tutorial/Content/fonts/04B_30.spritefont","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/fonts/04B_30.xnb","FontDescriptionProcessor","SpriteFontContent",498,70681,0.7624229
 "C:/Dev/C#/MonoGame Tutorial/Content/images/atlas.png","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/atlas.xnb","TextureProcessor","Texture2DContent",1844,65621,0.2652673
 "C:/Dev/C#/MonoGame Tutorial/Content/images/atlas.xml","C:\Dev\C#\MonoGame Tutorial\Content\bin\DesktopGL\Content\images/atlas.xml","CopyItem","File",844,844,0.0065963
+"C:/Dev/C#/MonoGame Tutorial/Content/images/background-pattern.png","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/background-pattern.xnb","TextureProcessor","Texture2DContent",1056,107669,0.1936544
 "C:/Dev/C#/MonoGame Tutorial/Content/images/logo.png","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/logo.xnb","TextureProcessor","Texture2DContent",16734,311381,0.0664201
 "C:/Dev/C#/MonoGame Tutorial/Content/images/testSquare.png","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/testSquare.xnb","TextureProcessor","Texture2DContent",4184,2986069,0.1256293

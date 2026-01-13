@@ -60,6 +60,18 @@
 #begin images/atlas.xml
 /copy:images/atlas.xml
 
+#begin images/background-pattern.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:images/background-pattern.png
+
 #begin images/logo.png
 /importer:TextureImporter
 /processor:TextureProcessor
