@@ -29,8 +29,8 @@ namespace MonoGameTutorial;
     private static double _moveSeconds = 0.25;
     private static int _length => Segments.Count;
     public static List<SlimeSegment> Segments;
-    public static SlimeSegment Head => Segments[0];
-    public static SlimeSegment Tail => Segments[_length - 1];
+    public static SlimeSegment Head => (Segments != null)? Segments[0] : null;
+    public static SlimeSegment Tail => (Segments != null)? Segments[_length - 1] : null;
     public static int Score;
 
     public Vector2 Position 
@@ -172,7 +172,8 @@ namespace MonoGameTutorial;
 
     public static void Reset()
     {
-        //Score = 0;
+        Score = 0;
+        _direction = Directions.Right;
         Segments.Clear();
     }
 

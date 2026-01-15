@@ -49,3 +49,4 @@ C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\MonoGameGum.dll
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\TextCopy.dll
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\fonts\04b_30.fnt
+C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\effects\greyScaleEffect.xnb

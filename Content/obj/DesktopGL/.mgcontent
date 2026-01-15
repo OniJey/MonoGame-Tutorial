@@ -2,11 +2,31 @@
 <SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Profile>Reach</Profile>
   <Platform>DesktopGL</Platform>
-  <Config />
+  <Config>Debug</Config>
   <SourceFiles>
+    <File>c:/Dev/C#/MonoGame Tutorial/Content/audio/bounce.wav</File>
+    <File>c:/Dev/C#/MonoGame Tutorial/Content/audio/collect.wav</File>
+    <File>c:/Dev/C#/MonoGame Tutorial/Content/audio/theme.ogg</File>
+    <File>c:/Dev/C#/MonoGame Tutorial/Content/audio/ui.wav</File>
+    <File>c:/Dev/C#/MonoGame Tutorial/Content/effects/greyScaleEffect.fx</File>
+    <File>c:/Dev/C#/MonoGame Tutorial/Content/fonts/04B_30_5x.spritefont</File>
+    <File>c:/Dev/C#/MonoGame Tutorial/Content/fonts/04B_30.spritefont</File>
     <File>c:/Dev/C#/MonoGame Tutorial/Content/images/atlas.png</File>
+    <File>c:/Dev/C#/MonoGame Tutorial/Content/images/background-pattern.png</File>
+    <File>c:/Dev/C#/MonoGame Tutorial/Content/images/logo.png</File>
+    <File>c:/Dev/C#/MonoGame Tutorial/Content/images/testSquare.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

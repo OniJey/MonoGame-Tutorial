@@ -16,7 +16,6 @@ using Gum.Wireframe;
 using Gum.DataTypes;
 using Gum.Forms.Controls;
 using Gum.Managers;
-using System.Net.Http;
 
 namespace MonoGameTutorial.Scenes;
 
@@ -52,6 +51,9 @@ public class GameScene : Scene
     private InputAction _right;
     private InputAction _down;
     private InputAction _up;
+    private Effect _greyscaleEffect;
+    private float _saturation = 1.0f;
+    private const float FADE_SPEED = 0.02f; 
 
     public List<Vector2> SpawnablePositions;
 
@@ -198,8 +200,7 @@ public class GameScene : Scene
         _bat.CenterOrigin();
 
         _uiSoundEffect = Content.Load<SoundEffect>("audio/ui");
-
-
+        _greyscaleEffect = Content.Load<Effect>("effects/greyScaleEffect");
     }
 
     public override void Update(GameTime gameTime)
@@ -210,6 +211,7 @@ public class GameScene : Scene
         // If the game is paused, do not continue
         if (_pausePanel.IsVisible || _gameOverPanel.IsVisible)
         {
+            _saturation = Math.Max(0.0f, _saturation - FADE_SPEED);
             return;
         }
 
@@ -250,28 +252,37 @@ public class GameScene : Scene
         Core.GraphicsDevice.Clear(Color.CornflowerBlue);
         SpriteBatch spriteBatch = Core.SpriteBatch;
 
-        drawSpriteBatch(spriteBatch, () =>
-            {
+        if (_pausePanel.IsVisible || _gameOverPanel.IsVisible)
+        {
+            // We are in a game over state, so apply the saturation parameter.
+            _greyscaleEffect.Parameters["Saturation"].SetValue(_saturation);
+
+            // And begin the sprite batch using the grayscale effect.
+            Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _greyscaleEffect);
+        }
+        else
+        {
+            // Otherwise, just begin the sprite batch as normal.
+            Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
+        }
+
+
                 _tileMap.Draw(spriteBatch);
                 SlimeSegment.Draw(spriteBatch);
                 _bat.Draw(spriteBatch, _bat.Position);
-                if(!_gameOverPanel.IsVisible)
-                {
-                    spriteBatch.DrawString(
-                    _font,              
-                    $"Score: {_score}", 
-                    _scoreTextPosition, 
-                    Color.White,        
-                    0.0f,               
-                    _scoreTextOrigin,   
-                    1.0f,               
-                    SpriteEffects.None, 
-                    0.0f                
-                    );
-                }
-            }
-        );
+                spriteBatch.DrawString(
+                _font,              
+                $"Score: {_score}", 
+                _scoreTextPosition, 
+                Color.White,        
+                0.0f,               
+                _scoreTextOrigin,   
+                1.0f,               
+                SpriteEffects.None, 
+                0.0f                
+                );
 
+        Core.SpriteBatch.End();
         GumService.Default.Draw();
 
         base.Draw(gameTime);
@@ -284,6 +295,9 @@ public class GameScene : Scene
 
         // Set the resume button to have focus
         _resumeButton.IsFocused = true;
+
+        //set the saturation of the game to 1.0f;
+        _saturation = 1.0f;
     }
     private static void drawSpriteBatch(SpriteBatch batch, Action func)
     {
@@ -383,6 +397,7 @@ public class GameScene : Scene
     public void GameOver()
     {
         _gameOverPanel.IsVisible = true;
+        _saturation = 1.0f;
         
     }
 
@@ -443,5 +458,6 @@ public class GameScene : Scene
         Core.Audio.PlaySoundEffect(_uiSoundEffect);
         SlimeSegment.Reset();
         Core.ChangeScene(new GameScene());
+
     }
 }

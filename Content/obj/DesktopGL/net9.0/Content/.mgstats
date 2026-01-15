@@ -1,14 +1,15 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Dev/C#/MonoGame Tutorial/Content/audio/bounce.wav","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/audio/bounce.xnb","SoundEffectProcessor","SoundEffectContent",50664,50725,10.902561
-"C:/Dev/C#/MonoGame Tutorial/Content/audio/collect.wav","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/audio/collect.xnb","SoundEffectProcessor","SoundEffectContent",22092,22153,0.2287811
-"C:/Dev/C#/MonoGame Tutorial/Content/audio/theme.ogg","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/audio/theme.xnb","SongProcessor","SongContent",1079706,123,0.8478538
-"C:/Dev/C#/MonoGame Tutorial/Content/audio/ui.wav","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/audio/ui.xnb","SoundEffectProcessor","SoundEffectContent",2032,2093,0.4991257
-"C:/Dev/C#/MonoGame Tutorial/Content/fonts/04B_30_5x.spritefont","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/fonts/04B_30_5x.xnb","FontDescriptionProcessor","SpriteFontContent",498,1053721,0.4805707
+"C:/Dev/C#/MonoGame Tutorial/Content/audio/bounce.wav","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/audio/bounce.xnb","SoundEffectProcessor","SoundEffectContent",50664,50725,0.4640855
+"C:/Dev/C#/MonoGame Tutorial/Content/audio/collect.wav","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/audio/collect.xnb","SoundEffectProcessor","SoundEffectContent",22092,22153,0.2236256
+"C:/Dev/C#/MonoGame Tutorial/Content/audio/theme.ogg","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/audio/theme.xnb","SongProcessor","SongContent",1079706,123,1.1960951
+"C:/Dev/C#/MonoGame Tutorial/Content/audio/ui.wav","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/audio/ui.xnb","SoundEffectProcessor","SoundEffectContent",2032,2093,0.2509329
+"C:/Dev/C#/MonoGame Tutorial/Content/effects/greyScaleEffect.fx","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/effects/greyScaleEffect.xnb","EffectProcessor","CompiledEffectContent",1512,953,0.4162616
+"C:/Dev/C#/MonoGame Tutorial/Content/fonts/04B_30_5x.spritefont","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/fonts/04B_30_5x.xnb","FontDescriptionProcessor","SpriteFontContent",498,1053721,0.2698182
 "C:/Dev/C#/MonoGame Tutorial/Content/fonts/04b_30.fnt","C:\Dev\C#\MonoGame Tutorial\Content\bin\DesktopGL\Content\fonts/04b_30.fnt","CopyItem","File",11127,11127,0.00752
-"C:/Dev/C#/MonoGame Tutorial/Content/fonts/04B_30.spritefont","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/fonts/04B_30.xnb","FontDescriptionProcessor","SpriteFontContent",498,70681,0.7624229
-"C:/Dev/C#/MonoGame Tutorial/Content/images/atlas.png","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/atlas.xnb","TextureProcessor","Texture2DContent",8634,1048661,0.2660658
+"C:/Dev/C#/MonoGame Tutorial/Content/fonts/04B_30.spritefont","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/fonts/04B_30.xnb","FontDescriptionProcessor","SpriteFontContent",498,70681,0.0520012
+"C:/Dev/C#/MonoGame Tutorial/Content/images/atlas.png","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/atlas.xnb","TextureProcessor","Texture2DContent",8634,1048661,0.0705598
 "C:/Dev/C#/MonoGame Tutorial/Content/images/atlas.xml","C:\Dev\C#\MonoGame Tutorial\Content\bin\DesktopGL\Content\images/atlas.xml","CopyItem","File",1698,1698,0.0024025
-"C:/Dev/C#/MonoGame Tutorial/Content/images/background-pattern.png","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/background-pattern.xnb","TextureProcessor","Texture2DContent",1056,107669,0.1936544
-"C:/Dev/C#/MonoGame Tutorial/Content/images/logo.png","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/logo.xnb","TextureProcessor","Texture2DContent",16734,311381,0.0664201
+"C:/Dev/C#/MonoGame Tutorial/Content/images/background-pattern.png","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/background-pattern.xnb","TextureProcessor","Texture2DContent",1056,107669,0.0115715
+"C:/Dev/C#/MonoGame Tutorial/Content/images/logo.png","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/logo.xnb","TextureProcessor","Texture2DContent",16734,311381,0.0293097
 "C:/Dev/C#/MonoGame Tutorial/Content/images/map-definition.xml","C:\Dev\C#\MonoGame Tutorial\Content\bin\DesktopGL\Content\images/map-definition.xml","CopyItem","File",721,721,0.0011368
-"C:/Dev/C#/MonoGame Tutorial/Content/images/testSquare.png","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/testSquare.xnb","TextureProcessor","Texture2DContent",4184,2986069,0.1256293
+"C:/Dev/C#/MonoGame Tutorial/Content/images/testSquare.png","C:/Dev/C#/MonoGame Tutorial/Content/bin/DesktopGL/Content/images/testSquare.xnb","TextureProcessor","Texture2DContent",4184,2986069,0.2030178

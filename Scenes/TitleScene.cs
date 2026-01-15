@@ -177,7 +177,7 @@ public class TitleScene : Scene
         _titleScreenButtonsPanel.Dock(Gum.Wireframe.Dock.Fill);
         _titleScreenButtonsPanel.AddToRoot();
 
-        var startButton = new Button();
+        var startButton = new AnimatedButton(_atlas);
         startButton.Anchor(Gum.Wireframe.Anchor.BottomLeft);
         startButton.X = 50;
         startButton.Y = -12;
