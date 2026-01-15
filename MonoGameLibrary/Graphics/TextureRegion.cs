@@ -31,6 +31,26 @@ public class TextureRegion
     public int Height => SourceRectangle.Height;
 
     /// <summary>
+    /// Returns the Top of the source rectangle as a normalized coordinate with componants in between 0.0f and 1.0f
+    /// </summary>
+    public float NormalizedTop => SourceRectangle.Top / (float) Texture.Height;
+
+    /// <summary>
+    /// Returns the Bottom of the source rectangle as a normalized coordinate with componants in between 0.0f and 1.0f
+    /// </summary>
+    public float NormalizedBottom => SourceRectangle.Bottom / (float) Texture.Height;
+
+    /// <summary>
+    /// Returns the Right of the source rectangle as a normalized coordinate with components in between 0.0f and 1.0f
+    /// </summary>
+    public float NormalizedRight => SourceRectangle.Right / (float) Texture.Width;
+
+    /// <summary>
+    /// Returns the Left of the source rectangle as a normalized coordinate with components in between 0.0f and 1.0f
+    /// </summary>
+    public float NormalizedLeft => SourceRectangle.Left / (float) Texture.Width;
+
+    /// <summary>
     /// Creates an empty TextureRegion instance
     /// </summary>
     public TextureRegion() {}

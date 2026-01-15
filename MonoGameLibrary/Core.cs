@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary.Audio;
 using MonoGameLibrary.Input;
 using MonoGameLibrary.Scenes;
+using MonoGameTutorial.Scenes;
 
 namespace MonoGameLibrary;
 
@@ -109,8 +110,6 @@ public class Core : Game
         Input = new InputManager();
 
         Audio = new AudioController();
-
-        s_activeScene.Initialize();
     }
 
     protected override void UnloadContent()
@@ -119,6 +118,7 @@ public class Core : Game
 
         Audio.Dispose();
     }
+
 
     protected override void Update(GameTime gameTime)
     {

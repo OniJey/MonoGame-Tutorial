@@ -9,18 +9,24 @@ using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
 using MonoGameLibrary.Input;
 using MonoGameLibrary.Scenes;
-using MonoGameLibrary.Audio;
+using MonoGameTutorial.UI;
+using MonoGameGum;
+using MonoGameGum.GueDeriving;
+using Gum.Wireframe;
+using Gum.DataTypes;
+using Gum.Forms.Controls;
+using Gum.Managers;
+using System.Net.Http;
 
 namespace MonoGameTutorial.Scenes;
 
 public class GameScene : Scene
 {
-        private Random _rng = new Random();
+    private Random _rng = new Random();
     private AnimatedPhysicsSprite _bat;
-
     private Sprite _bounds;
 
-    private AnimatedSprite _slime;
+    private SoundEffect _uiSoundEffect;
 
     private TileMap _tileMap;
 
@@ -32,7 +38,7 @@ public class GameScene : Scene
 
     private Song _theme;
 
-    private readonly float _slimeSpeed = 5.0f;
+    SlimeSegment _slimes;
 
     private SpriteFont _font;
 
@@ -40,12 +46,22 @@ public class GameScene : Scene
 
     private Vector2 _scoreTextOrigin;
 
-    private int _score;
+    private int _score => SlimeSegment.Score;
 
     private InputAction _left;
     private InputAction _right;
     private InputAction _down;
     private InputAction _up;
+
+    public List<Vector2> SpawnablePositions;
+
+    //UI componants
+    Panel _pausePanel;
+    AnimatedButton _resumeButton;
+
+    Panel _gameOverPanel;
+
+    private TextureAtlas _atlas;
 
     private readonly List<Enum> _leftInputs = [
         Keys.A, 
@@ -86,25 +102,27 @@ public class GameScene : Scene
             screenBounds.Height - (int)_tileMap.TileHeight*2
         );
 
+        SpawnablePositions = new List<Vector2>();
+
         // Initial slime position will be the center tile of the tile map.
         int centerRow = _tileMap.Rows / 2;
         int centerColumn = _tileMap.Columns / 2;
-        _slime.Position = new Vector2(centerColumn * _tileMap.TileWidth, centerRow * _tileMap.TileHeight);
+        _slimes = new SlimeSegment(4, new Vector2(centerColumn * _tileMap.TileWidth, centerRow * _tileMap.TileHeight));
 
         // Initial bat position will be in the top left corner of the room
         _bat.Position = new Vector2(2* _tileMap.TileWidth, 2* _tileMap.TileHeight);
 
         _left = new InputAction(_leftInputs, input, () => {
-            MoveSlime("left", _slimeSpeed);
+            SlimeSegment.Turn(SlimeSegment.Directions.Left);
         });
         _right = new InputAction(_rightInputs, input, ()=> {
-            MoveSlime("right", _slimeSpeed);
+            SlimeSegment.Turn(SlimeSegment.Directions.Right);
         });
         _up = new InputAction(_upInputs, input, () => {
-            MoveSlime("up", _slimeSpeed);
+            SlimeSegment.Turn(SlimeSegment.Directions.Up);
         });
         _down = new InputAction(_downInputs, input, () => {
-            MoveSlime("down", _slimeSpeed);
+            SlimeSegment.Turn(SlimeSegment.Directions.Down);
         });
 
         Core.Audio.PlaySong(_theme);
@@ -116,6 +134,8 @@ public class GameScene : Scene
         // Set the origin of the text so it is left-centered.
         float scoreTextYOrigin = _font.MeasureString("Score").Y * 0.5f;
         _scoreTextOrigin = new Vector2(0, scoreTextYOrigin);
+
+        InitializeUI();
     }
 
     public override void LoadContent()
@@ -145,19 +165,12 @@ public class GameScene : Scene
         //Load textures
 
         
-        TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas.xml");
+        _atlas = TextureAtlas.FromFile(Content, "images/atlas.xml");
 
         _tileMap = TileMap.FromFile(Content, "images/map-definition.xml");
         _tileMap.Scale *= 4;
         
         //Initialize Sprites
-
-        _slime  = atlas.CreateAnimatedSprite("slime-animation", "slime");
-        _slime.CollisionType = CollisionTypes.AABB;
-        _slime.CollisionReaction = CollisionReactions.Trigger;
-        _slime.TriggerAction = ( Sprite x, Sprite y) => slimeCollisionAction(x, (PhysicsSprite) y);
-        _slime.Scale = Vector2.One * 4;
-
         Vector2 randomDir = new Vector2(_rng.Next(-100, 100)/100.0f, _rng.Next(-100, 100)/100.0f);
         if(randomDir == Vector2.Zero) randomDir = new Vector2(0, 1);
         randomDir.Normalize();
@@ -170,7 +183,7 @@ public class GameScene : Scene
         _bounds.CollisionType = CollisionTypes.Container;
         _bounds.CollisionReaction = CollisionReactions.BlockAnchored;
 
-        _bat = atlas.CreateAnimatedPhysicsSprite("bat-animation", randomDir, "bat");
+        _bat = _atlas.CreateAnimatedPhysicsSprite("bat-animation", randomDir, "bat");
         _bat.Scale = Vector2.One * 4;
         _bat.CollisionRadius =  (int) _bat.Width/2; 
         _bat.CollisionType = CollisionTypes.Circle;
@@ -184,32 +197,51 @@ public class GameScene : Scene
         };
         _bat.CenterOrigin();
 
+        _uiSoundEffect = Content.Load<SoundEffect>("audio/ui");
+
 
     }
 
     public override void Update(GameTime gameTime)
-    {       
+    {     
+        // Ensure the UI is always updated
+        GumService.Default.Update(gameTime);
+
+        // If the game is paused, do not continue
+        if (_pausePanel.IsVisible || _gameOverPanel.IsVisible)
+        {
+            return;
+        }
+
+        AnimatedSprite head = SlimeSegment.Head.Sprite;
+
         _bat.Update(gameTime);
         _bat.doCollisionReaction(_bounds);
+        foreach(SlimeSegment segment in SlimeSegment.Segments)
+        {
+            if(segment != SlimeSegment.Head)
+            {
+                Sprite sprite = segment.Sprite;
+                _bat.doCollisionReaction(sprite);
+                head.doCollisionReaction(sprite);
+            }
+        }
 
-        _slime.Update(gameTime);
-        _slime.doCollisionReaction(_bat);
+       head.doCollisionReaction(_bat);
+       head.doCollisionReaction(_bounds);
 
-        _bounds.doCollisionReaction(_slime);
+        SlimeSegment.Update(gameTime);
+
+        _bounds.doCollisionReaction(head);
 
         DoActionsOnInputHeld(_left, _right, _up, _down);
 
-        // Debug output
-        Console.WriteLine($"Slime Position: {_slime.Position}");
-        Console.WriteLine($"Bat Position: {_bat.Position}");
-        Console.WriteLine($"Bat Velocity: {_bat.Velocity}");
-        Console.WriteLine($"Slime CollisionCircle: Center={_slime.CollisionCircle.Position}, Radius={_bat.CollisionCircle.Radius}");
-        Console.WriteLine($"Slime Origin: {_slime.Origin}");
-        Console.WriteLine($"Bounds AABB: {_bounds.AABB}");
-        Console.WriteLine($"Slime AABB: {_slime.AABB}");
-        Console.WriteLine($"Collides: {_slime.CollidesWith(_bounds)}");
-        Console.WriteLine("---");
+        if (Core.Input.Keyboard.JustPressed(Keys.Escape) || Core.Input.GamePads[1].justPressed(Buttons.Start))
+        {
+            PauseGame();
+        }
 
+        GumService.Default.Update(gameTime);
         base.Update(gameTime);
     }
 
@@ -221,9 +253,11 @@ public class GameScene : Scene
         drawSpriteBatch(spriteBatch, () =>
             {
                 _tileMap.Draw(spriteBatch);
-                _slime.Draw(spriteBatch, _slime.Position);
+                SlimeSegment.Draw(spriteBatch);
                 _bat.Draw(spriteBatch, _bat.Position);
-                spriteBatch.DrawString(
+                if(!_gameOverPanel.IsVisible)
+                {
+                    spriteBatch.DrawString(
                     _font,              
                     $"Score: {_score}", 
                     _scoreTextPosition, 
@@ -233,52 +267,29 @@ public class GameScene : Scene
                     1.0f,               
                     SpriteEffects.None, 
                     0.0f                
-                );
+                    );
+                }
             }
         );
 
+        GumService.Default.Draw();
+
         base.Draw(gameTime);
+    }
+    
+    private void PauseGame()
+    {
+        // Make the pause panel UI element visible.
+        _pausePanel.IsVisible = true;
+
+        // Set the resume button to have focus
+        _resumeButton.IsFocused = true;
     }
     private static void drawSpriteBatch(SpriteBatch batch, Action func)
     {
         batch.Begin();
         func();
         batch.End();
-    }
-    private void MoveSlime(string direction, float magnitude = 5.0f)
-    {
-        switch(direction)
-        {
-            case "right":
-                _slime.Move(new Vector2(1, 0), magnitude);
-                break;
-            case "left":
-                _slime.Move(new Vector2(-1, 0), magnitude);
-                break;
-            case "up":
-                _slime.Move(new Vector2(0, -1), magnitude);
-                break;
-            case "down":
-                _slime.Move(new Vector2(0, 1), magnitude);
-                break;
-        }
-    }
-
-    private void slimeCollisionAction(Sprite slime, PhysicsSprite bat)
-    {
-        //randomize bat's position
-        int column = _rng.Next(2, _tileMap.Columns - 2);
-        int row = _rng.Next(2, _tileMap.Rows -2);
-
-        _bat.Position = new Vector2(column * _tileMap.TileWidth, row * _tileMap.TileHeight);
-        Vector2 NewVelocity = new Vector2(_rng.Next(1,100)/100f, _rng.Next(1, 100)/100f);
-        NewVelocity.Normalize();
-        NewVelocity *= _bat.Velocity.Length();
-        _bat.Velocity = NewVelocity;
-
-        Core.Audio.PlaySoundEffect(_slimeEat);
-
-        _score += 100;
     }
 
     private void DoActionsOnInputHeld(params InputAction[] actions)
@@ -287,5 +298,150 @@ public class GameScene : Scene
         {
             action.DoOnInputHeld();
         }
+    }
+
+    public override void InitializeUI()
+    {
+        GumService.Default.Root.Children.Clear();
+
+        CreatePausePanel();
+        CreateGameOverPanel();
+    }
+
+    private void CreatePausePanel()
+    {
+        _pausePanel = new Panel();
+        _pausePanel.Anchor(Anchor.Center);
+        _pausePanel.WidthUnits = DimensionUnitType.Absolute;
+        _pausePanel.HeightUnits = DimensionUnitType.Absolute;
+        _pausePanel.Height = 70;
+        _pausePanel.Width = 264;
+        _pausePanel.IsVisible = false;
+        _pausePanel.AddToRoot();
+
+        TextureRegion bgRegion = _atlas.GetRegion("panel-background");
+
+        NineSliceRuntime bg = new NineSliceRuntime();
+        bg.Dock(Dock.Fill);
+        bg.Texture = bgRegion.Texture;
+        bg.TextureAddress = TextureAddress.Custom;
+        bg.TextureHeight = bgRegion.Height;
+        bg.TextureLeft = bgRegion.SourceRectangle.Left;
+        bg.TextureTop = bgRegion.SourceRectangle.Top;
+        bg.TextureWidth = bgRegion.Width;
+        _pausePanel.AddChild(bg);
+
+        var background = new ColoredRectangleRuntime();
+        background.Dock(Dock.Fill);
+        background.Color = Color.DarkBlue;
+        _pausePanel.AddChild(background);
+
+        var textInstance = new TextRuntime();
+        textInstance.Text = "PAUSED";
+        textInstance.CustomFontFile = @"fongs/04b_30.fnt";
+        textInstance.UseCustomFont = true;
+        textInstance.FontScale = 0.5f;
+        textInstance.X = 10f;
+        textInstance.Y = 10f;
+        _pausePanel.AddChild(textInstance);
+
+        _resumeButton = new AnimatedButton(_atlas);
+        _resumeButton.Text = "RESUME";
+        _resumeButton.Anchor(Anchor.BottomLeft);
+        _resumeButton.X = 9f;
+        _resumeButton.Y = -9f;
+        _resumeButton.Width = 80;
+        _resumeButton.Click += HandleResumeButtonClicked;
+        _pausePanel.AddChild(_resumeButton);
+
+        var quitButton = new AnimatedButton(_atlas);
+        quitButton.Text = "QUIT";
+        quitButton.Anchor(Anchor.BottomRight);
+        quitButton.X = -9f;
+        quitButton.Y = -9f;
+        quitButton.Width = 80;
+        quitButton.Click += HandleQuitButtonClicked;
+
+        _pausePanel.AddChild(quitButton);
+    }
+
+    private void HandleResumeButtonClicked(object sender, EventArgs e)
+    {
+        // A UI interaction occurred, play the sound effect
+        Core.Audio.PlaySoundEffect(_uiSoundEffect);
+
+        // Make the pause panel invisible to resume the game.
+        _pausePanel.IsVisible = false;
+    }
+
+    private void HandleQuitButtonClicked(object sender, EventArgs e)
+    {
+        Core.Audio.PlaySoundEffect(_uiSoundEffect);
+
+        Core.ChangeScene(new TitleScene());
+    }
+    public void GameOver()
+    {
+        _gameOverPanel.IsVisible = true;
+        
+    }
+
+
+    public void CreateGameOverPanel()
+    {
+        _gameOverPanel = new Panel();
+        _gameOverPanel.Anchor(Anchor.Center);
+        _gameOverPanel.WidthUnits = DimensionUnitType.Absolute;
+        _gameOverPanel.HeightUnits = DimensionUnitType.Absolute;
+        _gameOverPanel.Height = 70;
+        _gameOverPanel.Width = 264;
+        _gameOverPanel.IsVisible = false;
+        _gameOverPanel.AddToRoot();
+
+        TextureRegion bgRegion = _atlas.GetRegion("panel-background");
+
+        NineSliceRuntime bg = new NineSliceRuntime();
+        bg.Dock(Dock.Fill);
+        bg.Texture = bgRegion.Texture;
+        bg.TextureAddress = TextureAddress.Custom;
+        bg.TextureHeight = bgRegion.Height;
+        bg.TextureLeft = bgRegion.SourceRectangle.Left;
+        bg.TextureTop = bgRegion.SourceRectangle.Top;
+        bg.TextureWidth = bgRegion.Width;
+        _gameOverPanel.AddChild(bg);
+
+        var textInstance = new TextRuntime();
+        textInstance.Text = "GAME OVER!";
+        textInstance.CustomFontFile = @"fongs/04b_30.fnt";
+        textInstance.UseCustomFont = true;
+        textInstance.FontScale = 0.5f;
+        textInstance.X = 10f;
+        textInstance.Y = 10f;
+        _gameOverPanel.AddChild(textInstance);
+
+        var _restartButton = new AnimatedButton(_atlas);
+        _restartButton.Text = "RESTART";
+        _restartButton.Anchor(Anchor.BottomLeft);
+        _restartButton.X = 9f;
+        _restartButton.Y = -9f;
+        _restartButton.Width = 80;
+        _restartButton.Click += HandleRestartButtonClicked;
+        _gameOverPanel.AddChild(_restartButton);
+
+        var quitButton = new AnimatedButton(_atlas);
+        quitButton.Text = "QUIT";
+        quitButton.Anchor(Anchor.BottomRight);
+        quitButton.X = -9f;
+        quitButton.Y = -9f;
+        quitButton.Width = 80;
+        quitButton.Click += HandleQuitButtonClicked;
+        _gameOverPanel.AddChild(quitButton);
+    }
+
+    private void HandleRestartButtonClicked(object sender, EventArgs e)
+    {
+        Core.Audio.PlaySoundEffect(_uiSoundEffect);
+        SlimeSegment.Reset();
+        Core.ChangeScene(new GameScene());
     }
 }

@@ -117,7 +117,7 @@ public class AudioController
     /// <returns></returns>
     public SoundEffectInstance PlaySoundEffect(SoundEffect soundEffect)
     {
-        return PlaySoundEffect(soundEffect, 1.0f, 0.0f, 0.0f, false);
+        return PlaySoundEffect(soundEffect, SoundEffectVolume, 0.0f, 0.0f, false);
     }
 
     /// <summary>

@@ -7,6 +7,7 @@
     <File>C:/Dev/C#/MonoGame Tutorial/Content/audio/bounce.wav</File>
     <File>C:/Dev/C#/MonoGame Tutorial/Content/audio/collect.wav</File>
     <File>C:/Dev/C#/MonoGame Tutorial/Content/audio/theme.ogg</File>
+    <File>C:/Dev/C#/MonoGame Tutorial/Content/audio/ui.wav</File>
     <File>C:/Dev/C#/MonoGame Tutorial/Content/fonts/04B_30_5x.spritefont</File>
     <File>C:/Dev/C#/MonoGame Tutorial/Content/fonts/04B_30.spritefont</File>
     <File>C:/Dev/C#/MonoGame Tutorial/Content/images/atlas.png</File>
@@ -15,6 +16,7 @@
     <File>C:/Dev/C#/MonoGame Tutorial/Content/images/testSquare.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

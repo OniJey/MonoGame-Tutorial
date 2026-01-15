@@ -41,6 +41,7 @@ public abstract class Scene : IDisposable
     public virtual void Initialize()
     {
         LoadContent();
+        InitializeUI();
     }
 
     /// <summary>
@@ -71,6 +72,14 @@ public abstract class Scene : IDisposable
     public void Dispose()
     {
         Dispose(true);
+    }
+
+    /// <summary>
+    /// Initialize the UI of the scene
+    /// </summary>
+    public virtual void InitializeUI()
+    {
+        
     }
 
     public void Dispose(bool disposing)

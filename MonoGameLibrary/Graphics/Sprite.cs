@@ -377,38 +377,39 @@ public void Block(Sprite other, bool isAnchored)
         }
         
         Vector2 circlePos = circle.Position.ToVector2();
-        float leftDistance = circlePos.X - rect.Left;
-        float rightDistance = rect.Right - circlePos.X;
-        float topDistance = circle.Y - rect.Top;
-        float bottomDistance = rect.Bottom - circle.Y;
 
-        float closestSide = Math.Min(Math.Min(leftDistance, rightDistance), Math.Min(topDistance, bottomDistance));
+        Vector2 closestPoint = new Vector2(
+            Math.Clamp(circlePos.X, rect.Left, rect.Right),
+            Math.Clamp(circlePos.Y, rect.Top, rect.Bottom)
+        );
 
-        Vector2 closestPoint = Vector2.Zero;
-        switch(closestSide)
+
+        Vector2 diff = circlePos - closestPoint;
+        float distanceSquared = diff.LengthSquared();
+    
+        float distance = (float)Math.Sqrt(distanceSquared);
+        // Handle case where circle center is inside rectangle
+        Vector2 normal;
+        if(distance < 0.0001f)
         {
-            case var _ when closestSide == leftDistance:
-                closestPoint = new Vector2(rect.Left, circlePos.Y);
-                break;
-            case var _ when closestSide == rightDistance:
-                closestPoint = new Vector2(rect.Right, circlePos.Y);
-                break;
-            case var _ when closestSide == topDistance:
-                closestPoint = new Vector2(circlePos.X, rect.Top);
-                break;
-            case var _ when closestSide == bottomDistance:
-                closestPoint = new Vector2(circle.X, rect.Bottom);
-                break;
+            // Find shortest escape direction from rectangle center
+            Vector2 rectCenter = new Vector2(
+                (rect.Left + rect.Right) * 0.5f,
+                (rect.Top + rect.Bottom) * 0.5f
+            );
+            normal = Vector2.Normalize(circlePos - rectCenter);
+        }
+        else
+        {
+            normal = diff / distance;
         }
         
-        Vector2 diff = circlePos - closestPoint;
-        float distance = (diff.Length() > 0.0001f)? diff.Length() : 1;
-        Vector2 normal = diff / distance;
         float overlap = circle.Radius - distance;
         separation = normal * overlap;
     }
 
     //Move the sprites away from each other
+    separation *= (this.CollisionType == CollisionTypes.Container)? 1 : -1;
     if(isAnchored)
     {
         other.Move(-separation);

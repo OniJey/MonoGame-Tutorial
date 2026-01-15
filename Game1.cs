@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Gum.Forms;
+using Gum.Forms.Controls;
+using MonoGameGum;
 using MonoGameLibrary;
-using MonoGameLibrary.Graphics;
-using MonoGameLibrary.Input;
 using MonoGameTutorial.Scenes;
 
 namespace MonoGameTutorial;
@@ -22,8 +20,12 @@ public class Game1 : Core
 
     protected override void Initialize()
     {
-        s_activeScene = new TitleScene();
         base.Initialize();
+        InitializeGum();
+
+        s_activeScene = new TitleScene();
+        s_activeScene.Initialize();
+        ExitOnEscape = false;
     }
 
     protected override void LoadContent()
@@ -34,15 +36,37 @@ public class Game1 : Core
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
         base.Draw(gameTime);
+    }
+
+    private void InitializeGum()
+    {
+        //initialize the gum service, DefaultVisualsVersion specifies the version of defaultVisuals to use
+        GumService.Default.Initialize(this, DefaultVisualsVersion.V3);
+
+        GumService.Default.ContentLoader.XnaContentManager =  Content;
+
+        FrameworkElement.KeyboardsForUiControl.Add(GumService.Default.Keyboard);
+
+        FrameworkElement.GamePadsForUiControl.AddRange(GumService.Default.Gamepads);
+
+        FrameworkElement.TabReverseKeyCombos.Add(
+            new KeyCombo() {PushedKey = Keys.Up}
+        );
+
+        FrameworkElement.TabKeyCombos.Add(
+            new KeyCombo() {PushedKey = Keys.Down}
+        );
+
+        GumService.Default.CanvasWidth = GraphicsDevice.PresentationParameters.BackBufferWidth / 4.0f;
+        GumService.Default.CanvasHeight = GraphicsDevice.PresentationParameters.BackBufferHeight / 4.0f;
+        GumService.Default.Renderer.Camera.Zoom = 4.0f;
+
     }
     private static void drawSpriteBatch(SpriteBatch batch, Action func)
     {

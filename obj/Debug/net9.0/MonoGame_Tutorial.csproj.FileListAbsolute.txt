@@ -42,3 +42,10 @@ C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\audio\theme.xnb
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\fonts\04B_30.xnb
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\fonts\04B_30_5x.xnb
 C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\images\background-pattern.xnb
+C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\audio\ui.xnb
+C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\GumCommon.dll
+C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\FlatRedBall.InterpolationCore.dll
+C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\MonoGameGum.dll
+C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\TextCopy.dll
+C:\Dev\C#\MonoGame Tutorial\bin\Debug\net9.0\Content\fonts\04b_30.fnt
